@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@import'app/shared/variaveis/variaveis.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+// Estilização dos componentes do PrimeNG
+
+//Buttons
+.btnsPrimarios .p-ripple.p-element.p-button.p-component {
+    background-color: $color-buttons;
+    border: none;
+}
+
+.btnsSecundarios .p-ripple.p-element.p-button.p-component.p-button-outlined {
+    color: $color-buttons;
+    padding: 0.5rem;
+    border-width: 2px;
+}
