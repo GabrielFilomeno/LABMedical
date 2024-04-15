@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div id="containerLogin">
+    <div id="containerFoto">
+        <img id="img-login" src="../../assets/Imagens/img-login.jpg" alt="img-login">
+        <div id="containerIcones">
+            <img id="img-lab365" src="../../assets/Imagens/LAB365.png" alt="img-lab365">
+            <img id="img-labmedical" src="../../assets/Imagens/LABMedical.png" alt="img-labmedical">
+        </div>
+    </div>
+    <form id="containerFormulario" (ngSubmit)="logar()" [formGroup]="formLogin">
+        <h1 id="login">Login</h1>
+            <span class="p-float-label inputsLogin">
+                <input pInputText id="emailLogin" formControlName="emailLogin" />
+                <label for="emailLogin">E-mail</label>
+            </span>
+
+            <span class="p-float-label inputsLogin">
+                <input pInputText id="senhaLogin" formControlName="senhaLogin" />
+                <label for="senhaLogin">Senha</label>
+            </span>
+            <div class="card flex justify-content-center">
+                <p-button class="btnsPrimarios" label="Entrar"></p-button>
+            </div>
+            <a id="esqueceuSenha" href="">Esqueceu sua senha?</a>
+            <span id="cadastrar" >Não possui uma conta? <p-button class="btnsSecundarios" label="Criar Contar" [outlined]="true"></p-button></span>
+        </form>
+</div>
