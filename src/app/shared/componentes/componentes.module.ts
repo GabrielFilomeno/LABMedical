@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuLateralComponent } from './menuLateral/menu-lateral/menu-lateral.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -8,6 +10,8 @@ import { MenuLateralComponent } from './menuLateral/menu-lateral/menu-lateral.co
   declarations: [MenuLateralComponent],
   imports: [
     CommonModule,
+    SidebarModule,
+    ButtonModule
   ],
   exports: [MenuLateralComponent]
 })
