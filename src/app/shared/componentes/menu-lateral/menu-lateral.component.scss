@@ -27,20 +27,25 @@
 
     #containerMenuLateral {
         display: block;
-        
+        width: 25vw;
+        height: 100%;
+        border: 1px solid black;
+
         .menuLateral {
-            
+
             .img-labmedical {
                 width: 10rem;
                 margin-top: 4rem;
             }
+
             span {
                 display: flex;
                 flex-direction: column;
                 margin-top: 1rem;
                 color: #82B4CE;
             }
-            #spanMinimizarMenu{
+
+            #spanMinimizarMenu {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -50,3 +55,10 @@
         }
     }
 }
+
+@media screen and (min-width: 1024px) {
+    #containerMenuLateral {
+        width: 17rem;
+    }
+}
+

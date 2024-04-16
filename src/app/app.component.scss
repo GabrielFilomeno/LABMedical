@@ -1,0 +1,19 @@
+#appContainer {
+    display: flex;
+
+    app-menu-lateral {
+        z-index: 2;
+    }
+    
+    app-toolbar {
+        position: fixed;
+        z-index: 1;
+    }
+
+    #container {
+        width: 100%;
+        margin-top: 7rem;
+        margin-left: 3vw;
+        margin-right: 3vw;
+    }
+}
