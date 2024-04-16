@@ -5,6 +5,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
+import { ToolbarModule } from 'primeng/toolbar';
+import { AvatarModule } from 'primeng/avatar';
 
 
 
@@ -14,6 +16,8 @@ import { ButtonModule } from 'primeng/button';
     CommonModule,
     SidebarModule,
     ButtonModule,
+    ToolbarModule,
+    AvatarModule
   ],
   exports: [MenuLateralComponent, ToolbarComponent]
 })

@@ -1,8 +1,5 @@
 @import'app/shared/variaveis/variaveis.scss';
-<<<<<<< HEAD
-=======
 @import "primeicons/primeicons.css";
->>>>>>> feature/criar-menu-lateral
 
 * {
     box-sizing: border-box;
@@ -16,25 +13,14 @@ body {
 // Estilização dos componentes do PrimeNG
 
 //Buttons
-<<<<<<< HEAD
-.btnsPrimarios .p-ripple.p-element.p-button.p-component {
-    background-color: $color-buttons;
-=======
 
 //Buttons pagina de login
 .btnsPrimarios .p-ripple.p-element.p-button.p-component {
     background-color: $cor-botao;
->>>>>>> feature/criar-menu-lateral
     border: none;
 }
 
 .btnsSecundarios .p-ripple.p-element.p-button.p-component.p-button-outlined {
-<<<<<<< HEAD
-    color: $color-buttons;
-    padding: 0.5rem;
-    border-width: 2px;
-}
-=======
     color: $cor-botao;
     padding: 0.5rem;
     border-width: 2px;
@@ -45,9 +31,12 @@ body {
 //Botão que abre o menu lateral
 .btnAbrirMenu .p-ripple.p-element.p-button.p-component.p-button-icon-only {
     position: fixed;
-    margin-top: 10px;
+    margin-top: 16px;
+    margin-left: 5px;
     background-color: $cor-primaria;
     border: none;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
 }
 
 //Botões dentro do menu lateral
@@ -115,6 +104,57 @@ body {
 //Sombra menu lateral
 .p-component-overlay.p-sidebar-mask.p-component-overlay-enter.ng-tns-c4029148367-1 {
     display: none;
+}
+
+//Toolbar
+
+//Toolbar container
+.toolbar .p-toolbar.p-component {
+    margin: 0px;
+    border: none;
+    border-bottom: 1px solid black;
+    box-shadow: 0px 1px 2px rgba(0,0,0,1);
+    border-radius: 0px;
+}
+
+//Container do avatar/nome
+.flex.align-items-center.gap-2 {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 369px) {
+
+    //Toolbar container
+    .toolbar .p-toolbar.p-component {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.93rem;
+    }
+    
+    //Container do avatar/nome
+    .flex.align-items-center.gap-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+//Toolbar container
+.toolbar .p-toolbar.p-component {
+    font-size: 0.93rem;
+}
+
+//Container do avatar/nome
+.flex.align-items-center.gap-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 }
 
 @media screen and (min-width: 769px) {

@@ -1,4 +1,4 @@
-@import'../../../variaveis/variaveis.scss';
+@import'../../variaveis/variaveis.scss';
 
 #containerMenuLateralMobile {
 
@@ -20,6 +20,7 @@
 }
 
 @media screen and (min-width: 769px) {
+
     #containerMenuLateralMobile {
         display: none;
     }
