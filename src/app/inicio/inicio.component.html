@@ -1,0 +1,59 @@
+<div id="containerInicio">
+    <div id="containerEstatisticas">
+        <h2>Estatisticas do Sistema</h2>
+
+        <div id="containerNumeros">
+            <div class="numeros">
+                <span class="img-numero">
+                    <img src="../../assets/Imagens/numerosPacientes.png" alt="numeros-pacientes">
+                    <h2 class="hMargin">10</h2>
+                </span>
+                <h4 class="hMargin">Pacientes</h4>
+            </div>
+            <div class="numeros">
+                <span class="img-numero">
+                    <img src="../../assets/Imagens/numerosConsultas.png" alt=" numeros-consultas">
+                    <h2 class="hMargin">10</h2>
+                </span>
+                <h4 class="hMargin">Consultas</h4>
+            </div>
+            <div class="numeros">
+                <span class="img-numero">
+                    <img src="../../assets/Imagens/numerosExames.png" alt="numeros-exames">
+                    <h2 class="hMargin">10</h2>
+                </span>
+                <h4 class="hMargin">Exames</h4>
+            </div>
+        </div>
+    </div>
+    <div id="containerInfo">
+        <h2>Informações Rápidas de Paciêntes</h2>
+        <div id="containerPesquisar">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText [(ngModel)]="nome" />
+            </span>
+            <p-button class="btnPesquisar" label="Buscar" [text]="true" [raised]="true" severity="secondary"></p-button>
+        </div>
+        <div id="containerCards">
+                <div class="placeHolder">
+
+                </div>
+                <div class="placeHolder">
+
+                </div>
+                <div class="placeHolder">
+
+                </div>
+                <div class="placeHolder">
+
+                </div>
+                <div class="placeHolder">
+
+                </div>
+                <div class="placeHolder">
+
+                </div>
+        </div>
+    </div>
+</div>

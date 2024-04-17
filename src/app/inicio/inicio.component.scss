@@ -1,0 +1,135 @@
+@import'../shared/mixins/mixins.scss';
+
+#containerInicio {
+
+    #containerEstatisticas {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid black;
+
+        #containerNumeros {
+            display: flex;
+            justify-content: space-between;
+
+            .numeros {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 30%;
+                padding: 5px;
+                @include border-shadow (1px);
+
+                .img-numero {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    img {
+                        width: 4rem;
+                        height: 4.5rem;
+                    }
+                }
+
+                .hMargin {
+                    margin-top: 5px;
+                    margin-bottom: 0px;
+                }
+            }
+        }
+    }
+
+    #containerInfo {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid black;
+
+        #containerPesquisar {
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        #containerCards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            border: 1px solid black;
+
+
+            .placeHolder {
+                width: 17rem;
+                height: 20rem;
+                margin-top: 25px;
+
+
+                @include border-shadow(1px);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 594px) {
+    #containerInicio {
+
+        #containerInfo {
+
+            #containerCards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 20px;
+              
+              .placeHolder {
+                width: 15rem;
+                margin-right: auto;
+                margin-left: auto;
+              }
+              
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #containerInicio {
+
+        #containerEstatisticas {
+
+            #containerNumeros {
+
+                .numeros {
+
+                    .img-numero {
+                        display: flex;
+                        flex-direction: row;
+                        margin-bottom: 10px;
+
+                        img {
+                            width: 5rem;
+                            height: 5rem;
+                            margin-right: 25%;
+                        }
+                    }
+                }
+            }
+        }
+
+        #containerInfo {
+
+            #containerCards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-column-gap: 5.2%;
+
+                .placeHolder {
+                    width: 100%;
+                    max-width: 28rem;
+                    height: 20rem;
+                    margin-right: 0px;
+                    margin-left: 0px;
+                }
+            }
+        }
+    }
+}
