@@ -1,1 +1,36 @@
-<p>cadastro-consulta works!</p>
+<div id="pagCadastroConsulta">
+    <h2>Encontre o paciente</h2>
+    <div id="containerPesquisar">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText [(ngModel)]="procurarPaciente" />
+        </span>
+        <p-button class="btnPesquisar" label="Buscar" [text]="true" [raised]="true" severity="secondary"></p-button>
+    </div>
+    <div id="containerCadastro">
+        <h3>Consulta de [Nome do paciente]</h3>
+        <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroPaciente">
+            <label for="">Nome Completo</label>
+            <input id="nomeCompleto" type="text" pInputText formControlName="nomePaciente" />
+
+            <label for="dataConsulta">Data da Consulta</label>
+            <p-calendar id="dataConsulta" formControlName="dataConsulta" [touchUI]="true"></p-calendar>
+
+            <label for="horaConsulta">Hora da Consulta</label>
+            <p-calendar id="horaConsulta" formControlName="horaConsulta" [touchUI]="true"></p-calendar>
+
+            <label for="descProblema">Descrição do Problema</label>
+            <textarea id="descProblema" formControlName="descProblema" rows="5" cols="30" pInputTextarea [autoResize]="true"></textarea>
+
+            <label for="medicacaoReceitada">Medicação Receitada</label>
+            <textarea id="medicacaoReceitada" formControlName="medicacaoReceitada" rows="2" cols="30" pInputTextarea [autoResize]="true"></textarea>
+
+            <label for="dosagensPrecaucoes">Dosagens e Precauções</label>
+            <textarea id="dosagensPrecaucoes" formControlName="dosagensPrecaucoes" rows="2" cols="30" pInputTextarea [autoResize]="true"></textarea>
+
+            <p-button label="Editar" [outlined]="true" severity="info"></p-button>
+            <p-button label="Deletar" [outlined]="true" severity="danger"></p-button>
+            <p-button label="Salvar"></p-button>
+        </form>
+</div>
+
