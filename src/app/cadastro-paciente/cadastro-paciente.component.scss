@@ -1,0 +1,10 @@
+@import'../shared/mixins/mixins.scss';
+
+#containerPagCadastro {
+
+    #containerCadastro{
+        width: 100%;
+        padding: 1rem 2rem;
+        @include border-shadow (gray, 10px);
+    }
+}
