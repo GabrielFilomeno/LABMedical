@@ -1,5 +1,4 @@
-@mixin border-shadow($color: black, $blur: 5px) {
-    border: 1px solid $color;
+@mixin border-shadow($color: gray, $blur: 5px) {
     box-shadow: 0 0 $blur $color;
   }
   

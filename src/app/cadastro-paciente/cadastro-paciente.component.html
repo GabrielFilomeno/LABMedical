@@ -1,1 +1,75 @@
-<p>cadastro-paciente works!</p>
+<div id="containerPagCadastro">
+    <h2>Preencha os campos para cadastrar</h2>
+    <div id="containerCadastro">
+        <h3>Identificação</h3>
+        <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroPaciente">
+            <label for="">Nome Completo</label>
+            <input id="nomeCompleto" type="text" pInputText formControlName="nomePaciente"/>
+
+            <label for="genero">Gênero</label>
+            <p-dropdown id="genero" formControlName="genero" [options]="generos" placeholder="Selecione um gênero"></p-dropdown>
+
+            <label for="dataNascimento">Data Nascimento</label>
+            <p-calendar id="dataNascimento" formControlName="dataNascimento" [touchUI]="true"></p-calendar>
+
+            <label for="cpf">CPF</label>
+            <p-inputMask id="cpf" formControlName="cpf" mask="999.999.999-99"></p-inputMask>
+
+            <label for="rg">RG</label>
+            <p-inputMask id="rg" formControlName="rg" mask="99.999.999-9"></p-inputMask>
+
+            <label for="estadoCivil">Estado civil</label>
+            <p-dropdown id="estadoCivil" formControlName="estadoCivil" [options]="estadosCivis" placeholder="Selecione um estado civil"></p-dropdown>
+            
+            <label for="telefone">Telefone</label>
+            <p-inputMask id="telefone" formControlName="telefone" mask="(99) 9 9999-9999"></p-inputMask>
+
+            <label for="email">E-Mail</label>
+            <input id="email" type="text" pInputText formControlName="email"/>
+
+            <label for="naturalidade">Naturalidade</label>
+            <input id="naturalidade" type="text" pInputText formControlName="naturalidade"/>
+
+            <h3>Convênio</h3>
+
+            <label for="convenio">Convênio</label>
+            <input id="convenio" type="text" pInputText formControlName="convenio"/>
+
+            <label for="numeroCarteira">Número do Carteira</label>
+            <p-inputNumber inputId="integeronly" formControlName="numeroCarteira" [useGrouping]="false"></p-inputNumber>
+
+            <label for="validade">Validade</label>
+            <p-calendar id="validade" formControlName="validade" [touchUI]="true"></p-calendar>
+
+            <h3>Dados do Endereço</h3>
+
+            <label for="cep">CEP</label>
+            <p-inputMask id="cep" formControlName="cep" mask="99999-999"></p-inputMask>
+
+            <label for="cidade">Cidade</label>
+            <input id="cidade" type="text" pInputText formControlName="cidade"/>
+
+            <label for="estado">Estado</label>
+            <input id="estado" type="text" pInputText formControlName="estado"/>
+
+            <label for="logradouro">Logradouro</label>
+            <input id="logradouro" type="text" pInputText formControlName="logradouro"/>
+
+            <label for="numero">Número</label>
+            <input id="numero" type="text" pInputText formControlName="numero"/>
+
+            <label for="complemento">Complemento</label>
+            <input id="complemento" type="text" pInputText formControlName="complemento"/>
+
+            <label for="bairro">Bairro</label>
+            <input id="bairro" type="text" pInputText formControlName="bairro"/>
+
+            <label for="pontoReferencia">Ponto de Referência</label>
+            <input id="pontoReferencia" type="text" pInputText formControlName="pontoReferencia"/>
+
+            <p-button label="Editar" [outlined]="true" severity="info"></p-button>
+            <p-button label="Deletar" [outlined]="true" severity="danger"></p-button>
+            <p-button label="Salvar"></p-button>
+        </form>
+    </div>
+</div>
