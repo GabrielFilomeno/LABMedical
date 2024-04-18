@@ -9,9 +9,9 @@
     </div>
     <div id="containerCadastro">
         <h3>Consulta de [Nome do paciente]</h3>
-        <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroPaciente">
-            <label for="">Nome Completo</label>
-            <input id="nomeCompleto" type="text" pInputText formControlName="nomePaciente" />
+        <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroConsulta">
+            <label for="motivoConsulta">Motivo da Consulta</label>
+            <input id="motivoConsulta" type="text" pInputText formControlName="motivoConsulta" />
 
             <label for="dataConsulta">Data da Consulta</label>
             <p-calendar id="dataConsulta" formControlName="dataConsulta" [touchUI]="true"></p-calendar>

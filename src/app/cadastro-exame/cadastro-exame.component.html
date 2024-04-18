@@ -1,1 +1,40 @@
-<p>cadastro-exame works!</p>
+<div id="pagCadastroExame">
+    <h2>Encontre o paciente</h2>
+    <div id="containerPesquisar">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText [(ngModel)]="procurarPaciente" />
+        </span>
+        <p-button class="btnPesquisar" label="Buscar" [text]="true" [raised]="true" severity="secondary"></p-button>
+    </div>
+    <div id="containerCadastro">
+        <h3>Exame de [Nome do paciente]</h3>
+        <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroExame">
+            <label for="nomeExame">Nome do Exame</label>
+            <input id="nomeExame" type="text" pInputText formControlName="nomeExame" />
+
+            <label for="dataExame">Data do Exame</label>
+            <p-calendar id="dataExame" formControlName="dataExame" [touchUI]="true"></p-calendar>
+
+            <label for="horaExame">Hora do Exame</label>
+            <p-calendar id="horaExame" formControlName="horaExame" [touchUI]="true"></p-calendar>
+
+            <label for="tipoExame">Tipo de Exame</label>
+            <input id="tipoExame" type="text" pInputText formControlName="tipoExame" />
+
+            <label for="laboratorio">Laboratório</label>
+            <input id="laboratorio" type="text" pInputText formControlName="laboratorio" />
+
+            <label for="urlDocumento">URL do Documento do Exame</label>
+            <input id="urlDocumento" type="text" pInputText formControlName="urlDocumento" />
+
+            <label for="resultadoExame">Resultado do Exame</label>
+            <textarea id="resultadoExame" formControlName="resultadoExame" rows="5" cols="30" pInputTextarea [autoResize]="true"></textarea>
+
+            <p-button label="Editar" [outlined]="true" severity="info"></p-button>
+            <p-button label="Deletar" [outlined]="true" severity="danger"></p-button>
+            <p-button label="Salvar"></p-button>
+        </form>
+</div>
+
+

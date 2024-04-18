@@ -13,8 +13,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   styleUrl: './cadastro-consulta.component.scss'
 })
 export class CadastroConsultaComponent {
-  formCadastroPaciente = new FormGroup({
-    nomePaciente: new FormControl(''),
+  formCadastroConsulta = new FormGroup({
+    motivoConsulta: new FormControl(''),
     dataConsulta: new FormControl<Date | null>(null),
     horaConsulta: new FormControl<Date | null>(null),
     descProblema: new FormControl(''),
