@@ -6,23 +6,23 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
-  selector: 'app-cadastro-consulta',
+  selector: 'app-cadastro-exame',
   standalone: true,
   imports: [FormsModule, InputTextModule, ButtonModule, ReactiveFormsModule, CalendarModule, InputTextareaModule],
-  templateUrl: './cadastro-consulta.component.html',
-  styleUrl: './cadastro-consulta.component.scss'
+  templateUrl: './cadastro-exame.component.html',
+  styleUrl: './cadastro-exame.component.scss'
 })
-export class CadastroConsultaComponent {
-  formCadastroConsulta = new FormGroup({
-    motivoConsulta: new FormControl(''),
-    dataConsulta: new FormControl<Date | null>(null),
-    horaConsulta: new FormControl<Date | null>(null),
-    descProblema: new FormControl(''),
-    medicacaoReceitada: new FormControl(''),
-    dosagensPrecaucoes: new FormControl('')
+export class CadastroExameComponent {
+  formCadastroExame = new FormGroup({
+    nomeExame: new FormControl(''),
+    dataExame: new FormControl<Date | null>(null),
+    horaExame: new FormControl<Date | null>(null),
+    tipoExame: new FormControl(''),
+    laboratorio: new FormControl(''),
+    urlDocumento: new FormControl(''),
+    resultadoExame: new FormControl(''),
   });
   procurarPaciente: any;
 
 cadastrar(){};
-
 }
