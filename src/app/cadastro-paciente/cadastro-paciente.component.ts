@@ -6,11 +6,12 @@ import { SelectItem } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-cadastro-paciente',
   standalone: true,
-  imports: [InputTextModule, ReactiveFormsModule, DropdownModule, CalendarModule, InputMaskModule, InputNumberModule],
+  imports: [InputTextModule, ReactiveFormsModule, DropdownModule, CalendarModule, InputMaskModule, InputNumberModule, ButtonModule],
   templateUrl: './cadastro-paciente.component.html',
   styleUrl: './cadastro-paciente.component.scss'
 })

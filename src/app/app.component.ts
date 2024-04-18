@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { ComponentesModule } from './shared/componentes/componentes.module';
-import { CadastroPacienteComponent } from "./cadastro-paciente/cadastro-paciente.component";
+import { CadastroConsultaComponent } from "./cadastro-consulta/cadastro-consulta.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [ComponentesModule, CadastroPacienteComponent]
+    imports: [ComponentesModule]
 })
 export class AppComponent {
   title = 'LABMedical';
