@@ -18,6 +18,12 @@ export class LoginComponent {
     senhaLogin: new FormControl('')
   });
 
+  formTrocarSenha = new FormGroup({
+    emailTrocarSenha: new FormControl(''),
+    senhaTrocarSenha: new FormControl(''),
+    confirmarSenhaTrocarSenha: new FormControl(''),
+  });
+
   formCadastroUsuario = new FormGroup({
     nomeUsuario: new FormControl(''),
     emailUsuario: new FormControl(''),
@@ -25,14 +31,48 @@ export class LoginComponent {
     confirmarSenhaUsuario: new FormControl(''),
   });
 
-  visible: boolean = false;
+  modalEsqueceuSenha: boolean = false;
+  modalCadastro: boolean = false;
 
-  
-  constructor (private router: Router,) {}
-  
-  showDialog() {
-      this.visible = true;
+
+  constructor(private router: Router,) { }
+
+  showDialogTrocarSenha() {
+    this.modalEsqueceuSenha = true;
   };
+
+  showDialogCadastro() {
+    this.modalCadastro = true;
+  };
+
+  trocarSenha(emailTrocarSenha: string | null | undefined) {
+    const dadosUsuarios = localStorage.getItem('dadosUsuario');
+
+    if (dadosUsuarios) {
+      const listaUsuarios = JSON.parse(dadosUsuarios);
+      const usuarioIndex = listaUsuarios.findIndex((usuario: any) => usuario.emailUsuario === emailTrocarSenha);
+      console.log(usuarioIndex)
+
+      if (usuarioIndex >= 0) {
+        if(confirm(listaUsuarios[usuarioIndex].nomeUsuario + " você tem certeza que deseja trocar senha?")) {
+          listaUsuarios[usuarioIndex].senhaUsuario = this.formTrocarSenha.value.senhaTrocarSenha;
+          localStorage.setItem('dadosUsuario', JSON.stringify(listaUsuarios));
+          
+          alert('Você trocou a senha, faça login com a nova senha.');
+
+          this.formTrocarSenha.controls['emailTrocarSenha'].setValue('');
+          this.formTrocarSenha.controls['senhaTrocarSenha'].setValue('');
+          this.formTrocarSenha.controls['confirmarSenhaTrocarSenha'].setValue('');
+          
+          this.modalEsqueceuSenha = false;
+        }
+      } else {
+        alert('Usuário não encontrado.');
+      }
+    } else {
+      alert('Não há usuários cadastrados.');
+    }
+  }
 
   armazenarLocalStorage() {
 
@@ -54,7 +94,7 @@ export class LoginComponent {
       usuario = [];
     };
 
-    novoUsuario.idUsuario = usuario.length +1;
+    novoUsuario.idUsuario = usuario.length + 1;
     usuario.push(novoUsuario);
 
     localStorage.setItem('dadosUsuario', JSON.stringify(usuario));
@@ -62,10 +102,10 @@ export class LoginComponent {
 
   cadastrar() {
     this.armazenarLocalStorage()
-    this.visible = false;
+    this.modalCadastro = false;
   }
 
-  logar(){
+  logar() {
 
     this.router.navigate(['/inicio']);
   };

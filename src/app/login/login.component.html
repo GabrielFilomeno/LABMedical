@@ -22,15 +22,44 @@
         <div class="card flex justify-content-center">
             <p-button class="btnsPrimarios" label="Entrar"></p-button>
         </div>
-        <a id="esqueceuSenha" href="">Esqueceu sua senha?</a>
-        <span id="cadastrar">Não possui uma conta? <p-button class="btnsSecundarios" (click)="showDialog()" icon="pi pi-external-link" label="Criar Conta"
+        <a id="esqueceuSenha" (click)="showDialogTrocarSenha()"><i class="pi pi-external-link"></i> Esqueceu sua senha?</a>
+        <span id="cadastrar">Não possui uma conta? <p-button class="btnsSecundarios" (click)="showDialogCadastro()" icon="pi pi-external-link" label="Criar Conta"
                 [outlined]="true"></p-button></span>
     </form>
+
+     <div id="containerEsqueceuSenha">
+        <div class="card flex justify-content-center">
+            <p-dialog header="Trocar Senha" [(visible)]="modalEsqueceuSenha" [modal]="true" [style]="{ width: '50vw' }"
+                [draggable]="false" [resizable]="false">
+
+                <form id="containerFormulario" (ngSubmit)="trocarSenha(this.formTrocarSenha.value.emailTrocarSenha)" [formGroup]="formTrocarSenha">
+
+                    <span class="p-float-label inputs" style="margin-top: 2rem;">
+                        <input pInputText id="emailTrocarSenha" formControlName="emailTrocarSenha" />
+                        <label for="emailTrocarSenha">E-mail</label>
+                    </span>
+            
+                    <span class="p-float-label inputs">
+                        <input pInputText id="senhaTrocarSenha" formControlName="senhaTrocarSenha" />
+                        <label for="senhaTrocarSenha">Nova Senha</label>
+                    </span>
+
+                    <span class="p-float-label inputs">
+                        <input pInputText id="confirmarSenhaTrocarSenha" formControlName="confirmarSenhaTrocarSenha" />
+                        <label for="confirmarSenhaTrocarSenha">Confirmar Nova Senha</label>
+                    </span>
+
+                    <p-button type="ngSubmit" class="btnsPrimarios" label="Trocar Senha"></p-button>
+                </form>
+                
+            </p-dialog>
+        </div>
+     </div>
 
     <div id="cadastro">
 
         <div class="card flex justify-content-center">
-            <p-dialog header="Cadastro" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+            <p-dialog header="Cadastro" [(visible)]="modalCadastro" [modal]="true" [style]="{ width: '50vw' }"
                 [draggable]="false" [resizable]="false">
 
                 <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroUsuario">

@@ -49,6 +49,12 @@
 
     #esqueceuSenha {
         margin-top: 1rem;
+        color: #0000FF ;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
     }
 
     #cadastrar {
