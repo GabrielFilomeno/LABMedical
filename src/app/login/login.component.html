@@ -6,21 +6,59 @@
             <img id="img-labmedical" src="../../assets/Imagens/LABMedical.png" alt="img-labmedical">
         </div>
     </div>
+
     <form id="containerFormulario" (ngSubmit)="logar()" [formGroup]="formLogin">
         <h1 id="login">Login</h1>
-            <span class="p-float-label inputsLogin">
-                <input pInputText id="emailLogin" formControlName="emailLogin" />
-                <label for="emailLogin">E-mail</label>
-            </span>
 
-            <span class="p-float-label inputsLogin">
-                <input pInputText id="senhaLogin" formControlName="senhaLogin" />
-                <label for="senhaLogin">Senha</label>
-            </span>
-            <div class="card flex justify-content-center">
-                <p-button class="btnsPrimarios" label="Entrar"></p-button>
-            </div>
-            <a id="esqueceuSenha" href="">Esqueceu sua senha?</a>
-            <span id="cadastrar" >Não possui uma conta? <p-button class="btnsSecundarios" label="Criar Contar" [outlined]="true"></p-button></span>
-        </form>
+        <span class="p-float-label inputs">
+            <input pInputText id="emailLogin" formControlName="emailLogin" />
+            <label for="emailLogin">E-mail</label>
+        </span>
+
+        <span class="p-float-label inputs">
+            <input pInputText id="senhaLogin" formControlName="senhaLogin" />
+            <label for="senhaLogin">Senha</label>
+        </span>
+        <div class="card flex justify-content-center">
+            <p-button class="btnsPrimarios" label="Entrar"></p-button>
+        </div>
+        <a id="esqueceuSenha" href="">Esqueceu sua senha?</a>
+        <span id="cadastrar">Não possui uma conta? <p-button class="btnsSecundarios" (click)="showDialog()" icon="pi pi-external-link" label="Criar Conta"
+                [outlined]="true"></p-button></span>
+    </form>
+
+    <div id="cadastro">
+
+        <div class="card flex justify-content-center">
+            <p-dialog header="Cadastro" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+                [draggable]="false" [resizable]="false">
+
+                <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroUsuario">
+
+                    <span class="p-float-label inputs" style="margin-top: 2rem;">
+                        <input pInputText id="nomeUsuario" formControlName="nomeUsuario" />
+                        <label for="nomeUsuario">Nome Completo</label>
+                    </span>
+
+                    <span class="p-float-label inputs">
+                        <input pInputText id="emailUsuario" formControlName="emailUsuario" />
+                        <label for="emailUsuario">E-mail</label>
+                    </span>
+            
+                    <span class="p-float-label inputs">
+                        <input pInputText id="senhaUsuario" formControlName="senhaUsuario" />
+                        <label for="senhaUsuario">Senha</label>
+                    </span>
+
+                    <span class="p-float-label inputs">
+                        <input pInputText id="confirmarSenhaUsuario" formControlName="confirmarSenhaUsuario" />
+                        <label for="confirmarSenhaUsuario">Confirmar Senha</label>
+                    </span>
+
+                    <p-button type="ngSubmit" class="btnsPrimarios" label="Cadastrar"></p-button>
+                </form>
+                
+            </p-dialog>
+        </div>
+    </div>
 </div>
