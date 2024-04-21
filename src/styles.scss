@@ -9,7 +9,7 @@
 body {
     padding: 0px;
     margin: 0px;
-} 
+}
 
 // Estilização dos componentes do PrimeNG
 
@@ -80,6 +80,11 @@ body {
 //Icone de fechar
 .menuLateralMobile .p-icon.p-sidebar-close-icon {
     color: white;
+}
+
+//Sombra menu lateral mobile
+.p-component-overlay.p-sidebar-mask.p-component-overlay-enter.ng-tns-c4029148367-0 {
+    z-index: 1 !important;
 }
 
 //Menu lateral
@@ -156,7 +161,7 @@ body {
 //elementro padrão do timeline que eu não quero que apareça
 div.p-timeline-event-opposite {
     display: none;
-  }
+}
 
 @media screen and (max-width: 369px) {
 
