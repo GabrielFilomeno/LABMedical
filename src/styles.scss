@@ -1,4 +1,5 @@
 @import'app/shared/variaveis/variaveis.scss';
+@import'app/shared/mixins/mixins.scss';
 @import "primeicons/primeicons.css";
 
 * {
@@ -8,7 +9,7 @@
 body {
     padding: 0px;
     margin: 0px;
-}
+} 
 
 // Estilização dos componentes do PrimeNG
 
@@ -135,6 +136,27 @@ body {
 .p-inputtext.p-component.p-element {
     width: 100%;
 }
+
+
+//timeline de consultas e exames
+
+// container do card
+.p-card-body {
+    background-color: #d9d9d948;
+    border: none;
+}
+
+// linha do timeline
+.p-timeline-event-connector {
+    width: 4px;
+    height: 100%;
+    background-color: #1975A5;
+}
+
+//elementro padrão do timeline que eu não quero que apareça
+div.p-timeline-event-opposite {
+    display: none;
+  }
 
 @media screen and (max-width: 369px) {
 
