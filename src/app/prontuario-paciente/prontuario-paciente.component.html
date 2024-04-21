@@ -1,0 +1,27 @@
+<div id="containerProntuarioPaciente">
+    <div id="containerDados">
+        <h2>Paciente [Nome do Paciente]</h2>
+        <span>Convênio: Convênio</span>
+        <span>Alergias: Alergias </span>
+    </div>
+
+    <div id="containerCards">
+        <div class="card">
+            <p-timeline [value]="eventos" align="left" styleClass="customized-timeline">
+                <ng-template pTemplate="marker" let-event>
+                    <span id="teste">
+                        <img class="imagem" [src]="event.imagem" alt="Ícone personalizado" width="70" height="75">
+                    </span>
+                    <div class="p-timeline-event-connector ng-star-inserted"></div>
+                </ng-template>
+                <ng-template pTemplate="content" let-event>
+                    <h2 style="color: #003478;">{{event.tipo}}</h2>
+                    <p-card [header]="event.data">
+                        <p>{{ event.descricao }}</p>
+                        <p-button class="btnEditar" label="Editar" [outlined]="true" severity="info"></p-button>
+                    </p-card>
+                </ng-template>
+            </p-timeline>
+        </div>
+    </div>
+</div>
