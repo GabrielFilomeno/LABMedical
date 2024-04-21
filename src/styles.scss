@@ -11,6 +11,26 @@ body {
     margin: 0px;
 }
 
+@keyframes enter {
+    0% { opacity: 0; transform: translateX(-500px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes exit {
+    0% { opacity: 1; transform: translateX(+150px); }
+    100% { opacity: 0; transform: translateX(+1000px); }
+  }
+  
+
+::view-transition-old(root) {
+    animation: exit 0.5s ease 0s 1 normal forwards;
+  }
+  
+  ::view-transition-new(root) {
+    animation: enter 1s ease 0s 1 normal forwards;
+  }
+  
+
 // Estilização dos componentes do PrimeNG
 
 //Buttons
