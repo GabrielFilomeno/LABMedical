@@ -9,6 +9,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { CepService } from '../shared/services/cep.service';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -45,10 +46,21 @@ export class CadastroPacienteComponent {
     pontoReferencia: new FormControl('')
   })
 
+  enderecoPaciente = {
+    cep: String,
+    cidade: String,
+    estado: String,
+    logradouro: String,
+    bairro: String
+  }
+
   generos: SelectItem[];
   estadosCivis: SelectItem[];
 
-  constructor( private messageService: MessageService) {
+  constructor( 
+    private messageService: MessageService,
+    private cepService: CepService
+  ) {
     this.generos = [
       { label: 'Feminino', value: 'Feminino' },
       { label: 'Masculino', value: 'Masculino' },
@@ -106,9 +118,47 @@ export class CadastroPacienteComponent {
     localStorage.setItem('listaPacientes', JSON.stringify(pacientes));
   };
 
+  procurarCep() {
+
+    if (this.formCadastroPaciente.controls.cep.errors) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha o CEP para procurar.' });
+    } else if (this.formCadastroPaciente.value.cep) {
+      this.cepService.getCep(this.formCadastroPaciente.value.cep).subscribe({
+        next: (dados) => {
+          if (confirm("O endereço esta correto?" + "\n"
+            + "CEP: " + dados.cep + "\n"
+            + "Cidade: " + dados.localidade + "\n"
+            + "Estado: " + dados.uf + "\n"
+            + "Logradouro: " + dados.logradouro + "\n"
+            + "Bairro: " + dados.bairro)) {
+            this.enderecoPaciente = {
+              cep: dados.cep,
+              cidade: dados.localidade,
+              estado: dados.uf,
+              logradouro: dados.logradouro,
+              bairro: dados.bairro
+            };
+
+          this.formCadastroPaciente.controls['cidade'].setValue(dados.localidade);
+          this.formCadastroPaciente.controls['estado'].setValue(dados.uf);
+          this.formCadastroPaciente.controls['logradouro'].setValue(dados.logradouro);
+          this.formCadastroPaciente.controls['bairro'].setValue(dados.bairro);
+          } else {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Digite o CEP novamente.' });
+            this.formCadastroPaciente.controls['cep'].setValue('');
+          }
+        },
+        error: (error) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'CEP invalido.' });
+          this.formCadastroPaciente.controls['cep'].setValue('');
+          console.error(error);
+        }
+      });
+    };
+  };
+
   cadastrar() {
     if (this.formCadastroPaciente.valid) {
-      
         this.armazenarLocalStorage()
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Paciente Cadastrado.' });
 
