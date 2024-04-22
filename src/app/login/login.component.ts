@@ -56,10 +56,10 @@ export class LoginComponent {
   };
 
   trocarSenha(emailTrocarSenha: string | null | undefined) {
-    const dadosUsuarios = localStorage.getItem('dadosUsuario');
+    const dadosUsuarioss = localStorage.getItem('dadosUsuarios');
 
-    if (dadosUsuarios) {
-      const listaUsuarios = JSON.parse(dadosUsuarios);
+    if (dadosUsuarioss) {
+      const listaUsuarios = JSON.parse(dadosUsuarioss);
       const usuarioIndex = listaUsuarios.findIndex((usuario: any) => usuario.emailUsuario === emailTrocarSenha);
       console.log(usuarioIndex)
 
@@ -68,7 +68,7 @@ export class LoginComponent {
           if (this.formTrocarSenha.value.senhaTrocarSenha === this.formTrocarSenha.value.confirmarSenhaTrocarSenha) {
             if (confirm(listaUsuarios[usuarioIndex].nomeUsuario + " você tem certeza que deseja trocar senha?")) {
               listaUsuarios[usuarioIndex].senhaUsuario = this.formTrocarSenha.value.senhaTrocarSenha;
-              localStorage.setItem('dadosUsuario', JSON.stringify(listaUsuarios));
+              localStorage.setItem('dadosUsuarios', JSON.stringify(listaUsuarios));
 
               this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Você trocou a senha, faça login com a nova senha.' });
 
@@ -110,10 +110,10 @@ export class LoginComponent {
 
     let usuario;
 
-    const dadosUsuario = localStorage.getItem('dadosUsuario');
+    const dadosUsuarios = localStorage.getItem('dadosUsuarios');
 
-    if (dadosUsuario) {
-      usuario = JSON.parse(dadosUsuario);
+    if (dadosUsuarios) {
+      usuario = JSON.parse(dadosUsuarios);
 
     } else {
       usuario = [];
@@ -122,7 +122,7 @@ export class LoginComponent {
     novoUsuario.idUsuario = usuario.length + 1;
     usuario.push(novoUsuario);
 
-    localStorage.setItem('dadosUsuario', JSON.stringify(usuario));
+    localStorage.setItem('dadosUsuarios', JSON.stringify(usuario));
   }
 
   cadastrar() {
@@ -148,7 +148,7 @@ export class LoginComponent {
   }
 
   logar() {
-    const dadosUsuarios = localStorage.getItem('dadosUsuario');
+    const dadosUsuarioss = localStorage.getItem('dadosUsuarios');
 
     if (!this.formLogin.value.emailLogin) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha o email.' });
@@ -157,9 +157,9 @@ export class LoginComponent {
     } else if (!this.formLogin.value.senhaLogin) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha a senha.' });
       return;
-    } else if (dadosUsuarios) {
+    } else if (dadosUsuarioss) {
 
-      const listaUsuarios = JSON.parse(dadosUsuarios);
+      const listaUsuarios = JSON.parse(dadosUsuarioss);
 
       const usuarioValido = listaUsuarios.find((usuario: { idUsuario: number, emailUsuario: string; senhaUsuario: string; }) =>
         usuario.emailUsuario === this.formLogin.value.emailLogin && usuario.senhaUsuario === this.formLogin.value.senhaLogin);
@@ -177,6 +177,7 @@ export class LoginComponent {
     }
 
 
+    window.location.reload();
     this.verificarLogadoService.login();
     this.router.navigate(["inicio"]);
   };
