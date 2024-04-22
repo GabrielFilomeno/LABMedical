@@ -9,18 +9,20 @@
 
     <form id="containerFormulario" (ngSubmit)="logar()" [formGroup]="formLogin">
         <h1 id="login">Login</h1>
-
+        
+        <p-toast position="center"></p-toast>
+        
         <span class="p-float-label inputs">
             <input pInputText id="emailLogin" formControlName="emailLogin" />
-            <label for="emailLogin">E-mail</label>
+            <label for="emailLogin">* E-mail</label>
         </span>
-
+        
         <span class="p-float-label inputs">
-            <input pInputText id="senhaLogin" formControlName="senhaLogin" />
-            <label for="senhaLogin">Senha</label>
+            <p-password inputId="senhaLogin" formControlName="senhaLogin" [feedback]="false" [toggleMask]="true"></p-password>
+            <label for="senhaLogin">* Senha</label>
         </span>
         <div class="card flex justify-content-center">
-            <p-button class="btnsPrimarios" label="Entrar"></p-button>
+            <p-button type="ngSubmit" class="btnsPrimarios" label="Entrar"></p-button>
         </div>
         <a id="esqueceuSenha" (click)="showDialogTrocarSenha()"><i class="pi pi-external-link"></i> Esqueceu sua senha?</a>
         <span id="cadastrar">Não possui uma conta? <p-button class="btnsSecundarios" (click)="showDialogCadastro()" icon="pi pi-external-link" label="Criar Conta"
@@ -36,18 +38,48 @@
 
                     <span class="p-float-label inputs" style="margin-top: 2rem;">
                         <input pInputText id="emailTrocarSenha" formControlName="emailTrocarSenha" />
-                        <label for="emailTrocarSenha">E-mail</label>
+                        <label for="emailTrocarSenha">* E-mail</label>
                     </span>
+                    <small [ngClass]="{'classeErro': formTrocarSenha.invalid}" *ngIf="
+                    formTrocarSenha.controls.emailTrocarSenha.touched &&
+                    formTrocarSenha.controls.emailTrocarSenha.errors 
+                    && formTrocarSenha.controls.emailTrocarSenha.errors['required']">
+                    Campo obrigatório*
+                </small>
             
                     <span class="p-float-label inputs">
-                        <input pInputText id="senhaTrocarSenha" formControlName="senhaTrocarSenha" />
-                        <label for="senhaTrocarSenha">Nova Senha</label>
+                        <p-password inputId="senhaTrocarSenha" formControlName="senhaTrocarSenha" [toggleMask]="true"></p-password>
+                        <label for="senhaTrocarSenha">* Nova Senha</label>
                     </span>
+                    <small [ngClass]="{'classeErro': formTrocarSenha.invalid}" *ngIf="
+                    formTrocarSenha.controls.senhaTrocarSenha.touched &&
+                    formTrocarSenha.controls.senhaTrocarSenha.errors 
+                    && formTrocarSenha.controls.senhaTrocarSenha.errors['required']">
+                    Campo obrigatório*
+                </small>
+                <small [ngClass]="{'classeErro': formTrocarSenha.invalid}" *ngIf="
+                    formTrocarSenha.controls.senhaTrocarSenha.touched &&
+                    formTrocarSenha.controls.senhaTrocarSenha.errors 
+                    && formTrocarSenha.controls.senhaTrocarSenha.errors">
+                    A senha deve ter pelo menos 8 caracteres!
+                </small>
 
                     <span class="p-float-label inputs">
-                        <input pInputText id="confirmarSenhaTrocarSenha" formControlName="confirmarSenhaTrocarSenha" />
-                        <label for="confirmarSenhaTrocarSenha">Confirmar Nova Senha</label>
+                        <p-password inputId="confirmarSenhaTrocarSenha" formControlName="confirmarSenhaTrocarSenha" [toggleMask]="true"></p-password>
+                        <label for="confirmarSenhaTrocarSenha">* Confirmar Nova Senha</label>
                     </span>
+                    <small [ngClass]="{'classeErro': formTrocarSenha.invalid}" *ngIf="
+                    formTrocarSenha.controls.emailTrocarSenha.touched &&
+                    formTrocarSenha.controls.emailTrocarSenha.errors 
+                    && formTrocarSenha.controls.emailTrocarSenha.errors['required']">
+                    Campo obrigatório*
+                </small>
+                <small [ngClass]="{'classeErro': formTrocarSenha.invalid}" *ngIf="
+                    formTrocarSenha.controls.confirmarSenhaTrocarSenha.touched &&
+                    formTrocarSenha.controls.confirmarSenhaTrocarSenha.errors 
+                    && formTrocarSenha.controls.confirmarSenhaTrocarSenha.errors">
+                    Senha e Confirmar Senha devem ser iguais!
+                </small>
 
                     <p-button type="ngSubmit" class="btnsPrimarios" label="Trocar Senha"></p-button>
                 </form>
@@ -66,23 +98,65 @@
 
                     <span class="p-float-label inputs" style="margin-top: 2rem;">
                         <input pInputText id="nomeUsuario" formControlName="nomeUsuario" />
-                        <label for="nomeUsuario">Nome Completo</label>
+                        <label for="nomeUsuario">* Nome Completo</label>
                     </span>
+                    <small [ngClass]="{'classeErro': formCadastroUsuario.invalid}" *ngIf="
+                    formCadastroUsuario.controls.nomeUsuario.touched &&
+                    formCadastroUsuario.controls.nomeUsuario.errors 
+                    && formCadastroUsuario.controls.nomeUsuario.errors['required']">
+                    Campo obrigatório*
+                </small>
 
                     <span class="p-float-label inputs">
                         <input pInputText id="emailUsuario" formControlName="emailUsuario" />
-                        <label for="emailUsuario">E-mail</label>
+                        <label for="emailUsuario">* E-mail</label>
                     </span>
+                    <small [ngClass]="{'classeErro': formCadastroUsuario.invalid}" *ngIf="
+                    formCadastroUsuario.controls.emailUsuario.touched &&
+                    formCadastroUsuario.controls.emailUsuario.errors 
+                    && formCadastroUsuario.controls.emailUsuario.errors['required']">
+                    Campo obrigatório*
+                </small>
+                <small [ngClass]="{'classeErro': formCadastroUsuario.invalid}" *ngIf="
+                    formCadastroUsuario.controls.emailUsuario.touched &&
+                    formCadastroUsuario.controls.emailUsuario.errors 
+                    && formCadastroUsuario.controls.emailUsuario.errors">
+                    Formato de E-Mail invalido!
+                </small>
             
                     <span class="p-float-label inputs">
-                        <input pInputText id="senhaUsuario" formControlName="senhaUsuario" />
-                        <label for="senhaUsuario">Senha</label>
+                        <p-password inputId="senhaUsuario" formControlName="senhaUsuario" [toggleMask]="true"></p-password>
+                        <label for="senhaUsuario">* Senha</label>
                     </span>
+                    <small [ngClass]="{'classeErro': formCadastroUsuario.invalid}" *ngIf="
+                    formCadastroUsuario.controls.senhaUsuario.touched &&
+                    formCadastroUsuario.controls.senhaUsuario.errors 
+                    && formCadastroUsuario.controls.senhaUsuario.errors['required']">
+                    Campo obrigatório*
+                </small>
+                <small [ngClass]="{'classeErro': formCadastroUsuario.invalid}" *ngIf="
+                    formCadastroUsuario.controls.senhaUsuario.touched &&
+                    formCadastroUsuario.controls.senhaUsuario.errors 
+                    && formCadastroUsuario.controls.senhaUsuario.errors">
+                    A senha deve ter pelo menos 8 caracteres!
+                </small>
 
                     <span class="p-float-label inputs">
-                        <input pInputText id="confirmarSenhaUsuario" formControlName="confirmarSenhaUsuario" />
-                        <label for="confirmarSenhaUsuario">Confirmar Senha</label>
+                        <p-password inputId="confirmarSenhaUsuario" formControlName="confirmarSenhaUsuario" [toggleMask]="true"></p-password>
+                        <label for="confirmarSenhaUsuario">* Confirmar Senha</label>
                     </span>
+                    <small [ngClass]="{'classeErro': formCadastroUsuario.invalid}" *ngIf="
+                    formCadastroUsuario.controls.confirmarSenhaUsuario.touched &&
+                    formCadastroUsuario.controls.confirmarSenhaUsuario.errors 
+                    && formCadastroUsuario.controls.confirmarSenhaUsuario.errors['required']">
+                    Campo obrigatório*
+                </small>
+                <small [ngClass]="{'classeErro': formCadastroUsuario.invalid}" *ngIf="
+                    formCadastroUsuario.controls.confirmarSenhaUsuario.touched &&
+                    formCadastroUsuario.controls.confirmarSenhaUsuario.errors 
+                    && formCadastroUsuario.controls.confirmarSenhaUsuario.errors">
+                    Senha e Confirmar Senha devem ser iguais!
+                </small>
 
                     <p-button type="ngSubmit" class="btnsPrimarios" label="Cadastrar"></p-button>
                 </form>

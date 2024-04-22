@@ -1,41 +1,51 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { PasswordModule } from 'primeng/password';
+import { CommonModule } from '@angular/common';
+import { VerificarLogadoService } from '../shared/services/verificar-logado.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, InputTextModule, ButtonModule, DialogModule],
+  imports: [CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, DialogModule, ToastModule, PasswordModule],
+  providers: [MessageService, VerificarLogadoService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   formLogin = new FormGroup({
-    emailLogin: new FormControl(''),
-    senhaLogin: new FormControl('')
+    emailLogin: new FormControl('', [Validators.required, Validators.email]),
+    senhaLogin: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
 
   formTrocarSenha = new FormGroup({
-    emailTrocarSenha: new FormControl(''),
-    senhaTrocarSenha: new FormControl(''),
-    confirmarSenhaTrocarSenha: new FormControl(''),
+    emailTrocarSenha: new FormControl('', [Validators.required, Validators.email]),
+    senhaTrocarSenha: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    confirmarSenhaTrocarSenha: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
 
   formCadastroUsuario = new FormGroup({
-    nomeUsuario: new FormControl(''),
-    emailUsuario: new FormControl(''),
-    senhaUsuario: new FormControl(''),
-    confirmarSenhaUsuario: new FormControl(''),
+    nomeUsuario: new FormControl('', Validators.required),
+    emailUsuario: new FormControl('', [Validators.required, Validators.email]),
+    senhaUsuario: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    confirmarSenhaUsuario: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
 
   modalEsqueceuSenha: boolean = false;
   modalCadastro: boolean = false;
 
 
-  constructor(private router: Router,) { }
+  constructor(
+    private router: Router,
+    private messageService: MessageService,
+    public verificarLogadoService: VerificarLogadoService
+  ) { }
 
   showDialogTrocarSenha() {
     this.modalEsqueceuSenha = true;
@@ -53,26 +63,41 @@ export class LoginComponent {
       const usuarioIndex = listaUsuarios.findIndex((usuario: any) => usuario.emailUsuario === emailTrocarSenha);
       console.log(usuarioIndex)
 
-      if (usuarioIndex >= 0) {
-        if(confirm(listaUsuarios[usuarioIndex].nomeUsuario + " você tem certeza que deseja trocar senha?")) {
-          listaUsuarios[usuarioIndex].senhaUsuario = this.formTrocarSenha.value.senhaTrocarSenha;
-          localStorage.setItem('dadosUsuario', JSON.stringify(listaUsuarios));
-          
-          alert('Você trocou a senha, faça login com a nova senha.');
+      if (this.formTrocarSenha.valid) {
+        if (usuarioIndex >= 0) {
+          if (this.formTrocarSenha.value.senhaTrocarSenha === this.formTrocarSenha.value.confirmarSenhaTrocarSenha) {
+            if (confirm(listaUsuarios[usuarioIndex].nomeUsuario + " você tem certeza que deseja trocar senha?")) {
+              listaUsuarios[usuarioIndex].senhaUsuario = this.formTrocarSenha.value.senhaTrocarSenha;
+              localStorage.setItem('dadosUsuario', JSON.stringify(listaUsuarios));
 
-          this.formTrocarSenha.controls['emailTrocarSenha'].setValue('');
-          this.formTrocarSenha.controls['senhaTrocarSenha'].setValue('');
-          this.formTrocarSenha.controls['confirmarSenhaTrocarSenha'].setValue('');
-          
-          this.modalEsqueceuSenha = false;
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Você trocou a senha, faça login com a nova senha.' });
+
+              this.formTrocarSenha.controls['emailTrocarSenha'].setValue('');
+              this.formTrocarSenha.controls['senhaTrocarSenha'].setValue('');
+              this.formTrocarSenha.controls['confirmarSenhaTrocarSenha'].setValue('');
+
+              this.modalEsqueceuSenha = false;
+            } else {
+              return;
+            };
+          } else {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Senha e Confirmar Senha devem ser iguais.' });
+            return;
+          }
+
+        } else if (usuarioIndex < 0) {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Usuario não encontrado.' });
+          return;
+        } else {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Não há usuários cadastrados.' });
+          return;
         }
       } else {
-        alert('Usuário não encontrado.');
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Verifique se os campos estão preenchidos corretamente.' });
       }
-    } else {
-      alert('Não há usuários cadastrados.');
     }
   }
+
 
   armazenarLocalStorage() {
 
@@ -101,12 +126,58 @@ export class LoginComponent {
   }
 
   cadastrar() {
-    this.armazenarLocalStorage()
-    this.modalCadastro = false;
+    if (this.formCadastroUsuario.valid) {
+      if (this.formCadastroUsuario.value.senhaUsuario === this.formCadastroUsuario.value.confirmarSenhaUsuario) {
+        this.armazenarLocalStorage()
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Cadastro Efetuado.' });
+        this.modalCadastro = false;
+      } else {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Senha e Confirmar Senha devem ser iguais.' });
+      };
+    } else if (
+      this.formCadastroUsuario.value.nomeUsuario == '' ||
+      this.formCadastroUsuario.value.emailUsuario == '' ||
+      this.formCadastroUsuario.value.senhaUsuario == '' ||
+      this.formCadastroUsuario.value.confirmarSenhaUsuario == ''
+    ) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha todos os campos' });
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Verifique se os campos estão preenchidos corretamente.' });
+      return;
+    }
   }
 
   logar() {
+    const dadosUsuarios = localStorage.getItem('dadosUsuario');
 
-    this.router.navigate(['/inicio']);
+    if (!this.formLogin.value.emailLogin) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha o email.' });
+      return;
+
+    } else if (!this.formLogin.value.senhaLogin) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha a senha.' });
+      return;
+    } else if (dadosUsuarios) {
+
+      const listaUsuarios = JSON.parse(dadosUsuarios);
+
+      const usuarioValido = listaUsuarios.find((usuario: { idUsuario: number, emailUsuario: string; senhaUsuario: string; }) =>
+        usuario.emailUsuario === this.formLogin.value.emailLogin && usuario.senhaUsuario === this.formLogin.value.senhaLogin);
+      if (usuarioValido) {
+
+        let idUsuario = usuarioValido.idUsuario;
+        localStorage.setItem('idUsuarioLogado', JSON.stringify(idUsuario))
+      } else {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email ou senha incorretos.' });
+        return;
+      }
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Não há usuários cadastrados.' });
+      return;
+    }
+
+
+    this.verificarLogadoService.login();
+    this.router.navigate(["inicio"]);
   };
 }

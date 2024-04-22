@@ -4,12 +4,12 @@
     display: flex;
 
     app-menu-lateral {
-        z-index: 2;
+        z-index: 1;
     }
     
     app-toolbar {
         position: fixed;
-        z-index: 1;
+        z-index: 0;
     }
 
     #container {
@@ -18,4 +18,8 @@
         margin-left: 3vw;
         margin-right: 3vw;
     }
+}
+
+.desativado {
+    display: none;
 }
