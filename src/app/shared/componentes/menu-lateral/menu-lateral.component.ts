@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Sidebar } from 'primeng/sidebar';
+import { VerificarLogadoService } from '../../services/verificar-logado.service';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -16,14 +17,22 @@ export class MenuLateralComponent {
       this.sidebarRef.close(e);
   }
 
-  constructor (private router: Router,) {};
+  constructor (
+    private router: Router,
+    private verificarLogadoService: VerificarLogadoService
+  ) {};
 
   rotaInicio() {
     this.router.navigate(['inicio']);
   };
 
   rotaSair() {
+    if(confirm('Você tem certeza qie deseja sair?')) {
+    this.verificarLogadoService.logout();
     this.router.navigate(['login']);
+    } else {
+      return;
+    }
   };
 
   rotaCadastroPaciente() {

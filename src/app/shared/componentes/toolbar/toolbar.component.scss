@@ -1,7 +1,9 @@
 @import'../../variaveis/variaveis.scss';
+#containerToolbar {
 
-#nomeDaPagina {
-    margin-left: 45px;
+    #nomeDaPagina {
+        margin-left: 45px;
+    }
 }
 
 @media screen and (max-width: 369px) {

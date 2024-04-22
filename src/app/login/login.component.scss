@@ -42,41 +42,48 @@
         flex-direction: column;
         align-items: center;
 
-        .inputsLogin {
+        .inputs {
             margin: 1rem
         }
     }
 
     #esqueceuSenha {
         margin-top: 1rem;
-    }
+        color: #0000FF;
 
-    #cadastrar {
-        display: flex;
-        align-items: center;
-        margin-top: 1rem;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
 
-        .btnsSecundarios {
-            margin-left: 5px;
+
+        #cadastrar {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+
+            .btnsSecundarios {
+                margin-left: 5px;
+            }
         }
     }
 }
 
 @media screen and (min-width: 481px) {
     #containerLogin {
-    
-        #containerFoto {    
-    
+
+        #containerFoto {
+
             #img-login {
                 width: 20rem;
             }
-    
+
             #containerIcones {
-    
+
                 #img-lab365 {
                     width: 5.5rem;
                 }
-    
+
                 #img-labmedical {
                     width: 5.5rem;
                 }
@@ -86,58 +93,59 @@
 
 }
 
-@media screen and (min-width: 769px) {  
+@media screen and (min-width: 769px) {
     #containerLogin {
         display: flex;
         flex-direction: row;
-        height: 100vh;
-    
+        position: absolute;
+        top: 0.7rem;
+
         #containerFoto {
             width: 55vw;
             height: 95vh;
             border-bottom: none;
             border-right: 5px ridge #1975A5;
             padding: 2rem;
-    
+
             #img-login {
                 width: 25rem;
                 margin-top: 20vh;
             }
-    
+
             #containerIcones {
                 display: flex;
                 justify-content: end;
                 width: 100%;
-    
+
                 #img-lab365 {
                     position: absolute;
-                    bottom: 3rem;
+                    bottom: 2rem;
                     width: 6rem;
                     height: 2.5rem;
                 }
-    
+
                 #img-labmedical {
                     position: absolute;
-                    right: 1.5rem;
-                    bottom: 3rem;
+                    right: 4.5rem;
+                    bottom: 1.5rem;
                     width: 6rem;
                 }
             }
         }
-    
-        
+
+
         #containerFormulario {
             width: 45vw;
-        }   
+        }
     }
 }
 
 @media screen and (min-width: 1025px) {
 
     #containerLogin {
-    
+
         #containerFoto {
-    
+
             #img-login {
                 width: 35rem;
             }
@@ -148,12 +156,18 @@
 @media screen and (min-width: 1201px) {
 
     #containerLogin {
-    
+
         #containerFoto {
-    
+
             #img-login {
                 width: 40rem;
             }
         }
     }
+}
+
+.classeErro {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: red;
 }

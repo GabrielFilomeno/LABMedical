@@ -6,6 +6,8 @@ import { CadastroConsultaComponent } from './cadastro-consulta/cadastro-consulta
 import { CadastroExameComponent } from './cadastro-exame/cadastro-exame.component';
 import { ListarProntuariosComponent } from './listar-prontuarios/listar-prontuarios.component';
 import { ProntuarioPacienteComponent } from './prontuario-paciente/prontuario-paciente.component';
+import { verificarLogadoGuard } from './shared/guardaRotas/verificar-logado.guard';
+import { paginaLoginGuard } from './shared/guardaRotas/pagina-login.guard';
 
 export const routes: Routes = [
 
@@ -15,27 +17,33 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [paginaLoginGuard]
     },
     {
         path: 'inicio',
-        component: InicioComponent
+        component: InicioComponent,
+        canActivate: [verificarLogadoGuard]
     },
     {
         path: 'cadastro-paciente',
-        component: CadastroPacienteComponent
+        component: CadastroPacienteComponent,
+        canActivate: [verificarLogadoGuard]
     },
     {
         path: 'cadastro-consulta',
-        component: CadastroConsultaComponent
+        component: CadastroConsultaComponent,
+        canActivate: [verificarLogadoGuard]
     },
     {
         path: 'cadastro-exame',
-        component: CadastroExameComponent
+        component: CadastroExameComponent,
+        canActivate: [verificarLogadoGuard]
     },
     {
         path: 'listagem-de-prontuarios',
         component: ListarProntuariosComponent,
+        canActivate: [verificarLogadoGuard],
         children: [
             {
                 path: 'prontuario-paciente/:id',
