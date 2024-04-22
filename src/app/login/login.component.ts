@@ -7,8 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { PasswordModule } from 'primeng/password';
-import { CommonModule } from '@angular/common';
 import { VerificarLogadoService } from '../shared/services/verificar-logado.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',

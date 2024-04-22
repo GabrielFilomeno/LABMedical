@@ -3,6 +3,7 @@
     <div id="containerCadastro">
         <h3>Identificação</h3>
         <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroPaciente">
+            <p-toast position="center"></p-toast>
             <label for="nomeCompleto">Nome Completo</label>
             <input id="nomeCompleto" type="text" pInputText formControlName="nomePaciente"/>
 
@@ -15,8 +16,8 @@
             <label for="cpf">CPF</label>
             <p-inputMask id="cpf" formControlName="cpf" mask="999.999.999-99"></p-inputMask>
 
-            <label for="rg">RG</label>
-            <p-inputMask id="rg" formControlName="rg" mask="99.999.999-9"></p-inputMask>
+            <label for="rg">RG e Orgão Expeditor</label>
+            <input id="rg" type="text" pInputText formControlName="rg"/>
 
             <label for="estadoCivil">Estado civil</label>
             <p-dropdown id="estadoCivil" formControlName="estadoCivil" [options]="estadosCivis" placeholder="Selecione um estado civil"></p-dropdown>
@@ -30,12 +31,21 @@
             <label for="naturalidade">Naturalidade</label>
             <input id="naturalidade" type="text" pInputText formControlName="naturalidade"/>
 
+            <label for="contatoEmergencia">Contato de Emergência</label>
+            <p-inputMask id="contatoEmergencia" formControlName="contatoEmergencia" mask="(99) 9 9999-9999"></p-inputMask>
+
+            <label for="alergias">Alergias</label>
+            <input id="alergias" type="text" pInputText formControlName="alergias"/>
+
+            <label for="cuidadosEspecificos">Cuidados Específicos</label>
+            <input id="cuidadosEspecificos" type="text" pInputText formControlName="cuidadosEspecificos"/>
+
             <h3>Convênio</h3>
 
             <label for="convenio">Convênio</label>
             <input id="convenio" type="text" pInputText formControlName="convenio"/>
 
-            <label for="numeroCarteira">Número do Carteira</label>
+            <label for="numeroCarteira">Número da Carteira</label>
             <p-inputNumber inputId="integeronly" formControlName="numeroCarteira" [useGrouping]="false"></p-inputNumber>
 
             <label for="validade">Validade</label>
@@ -45,6 +55,7 @@
 
             <label for="cep">CEP</label>
             <p-inputMask id="cep" formControlName="cep" mask="99999-999"></p-inputMask>
+            <p-button type="button" label="Procurar CEP" (click)="procurarCep()" [outlined]="true" severity="info"></p-button>
 
             <label for="cidade">Cidade</label>
             <input id="cidade" type="text" pInputText formControlName="cidade"/>
@@ -69,7 +80,7 @@
 
             <p-button label="Editar" [outlined]="true" severity="info"></p-button>
             <p-button label="Deletar" [outlined]="true" severity="danger"></p-button>
-            <p-button label="Salvar"></p-button>
+            <p-button type="ngSubmit" label="Salvar"></p-button>
         </form>
     </div>
 </div>
