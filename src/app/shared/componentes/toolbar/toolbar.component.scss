@@ -1,25 +1,35 @@
 @import'../../variaveis/variaveis.scss';
+
 #containerToolbar {
 
     #nomeDaPagina {
-        margin-left: 45px;
+        margin-left: 40px !important;
     }
 }
 
 @media screen and (max-width: 369px) {
-    #nomeDaPagina {
-        margin-left: 0px;
+    #containerToolbar {
+
+        #nomeDaPagina {
+            margin-left: 0px;
+        }
     }
 }
 
 @media screen and (min-width: 769px) {
-    #nomeDaPagina {
-        margin-left: 26vw; 
+    #containerToolbar {
+
+        #nomeDaPagina {
+            margin-left: 26vw !important;
+        }
     }
 }
 
 @media screen and (min-width: 1024px) {
-    #nomeDaPagina {
-        margin-left: 18rem; 
+    #containerToolbar {
+
+        #nomeDaPagina {
+            margin-left: 19rem !important;
+        }
     }
 }

@@ -14,6 +14,8 @@ export class VerificarLogadoService {
 
   logout() {
     this.logado = false;
+    const idUsuarioLogado = 0;
+    localStorage.setItem('idUsuarioLogado', JSON.stringify(idUsuarioLogado));
     localStorage.setItem('usuarioLogado', JSON.stringify(this.logado));
   }
 

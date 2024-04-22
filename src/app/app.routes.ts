@@ -13,41 +13,50 @@ export const routes: Routes = [
 
     {
         path: '',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [paginaLoginGuard],
+        data: { title: 'Login' }
     },
     {
         path: 'login',
         component: LoginComponent,
-        canActivate: [paginaLoginGuard]
+        canActivate: [paginaLoginGuard],
+        data: { title: 'Login' }
     },
     {
         path: 'inicio',
         component: InicioComponent,
-        canActivate: [verificarLogadoGuard]
+        canActivate: [verificarLogadoGuard],
+        data: { title: 'ESTATÍSTICAS E INFORMAÇÕES' }
     },
     {
         path: 'cadastro-paciente',
         component: CadastroPacienteComponent,
-        canActivate: [verificarLogadoGuard]
+        canActivate: [verificarLogadoGuard],
+        data: { title: 'CADASTRO DE PACIENTE' }
     },
     {
         path: 'cadastro-consulta',
         component: CadastroConsultaComponent,
-        canActivate: [verificarLogadoGuard]
+        canActivate: [verificarLogadoGuard],
+        data: { title: 'CADASTRO DE CONSULTA' }
     },
     {
         path: 'cadastro-exame',
         component: CadastroExameComponent,
-        canActivate: [verificarLogadoGuard]
+        canActivate: [verificarLogadoGuard],
+        data: { title: 'CADASTRO DE EXAME' }
     },
     {
         path: 'listagem-de-prontuarios',
         component: ListarProntuariosComponent,
         canActivate: [verificarLogadoGuard],
+        data: { title: 'LISTAGEM DE PRONTUÁRIOS' },
         children: [
             {
                 path: 'prontuario-paciente/:id',
-                component: ProntuarioPacienteComponent
+                component: ProntuarioPacienteComponent,
+                data: { title: 'PRONTUÁRIO DE PACIENTE' }
             }
         ]
     }

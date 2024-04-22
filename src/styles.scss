@@ -13,23 +13,37 @@ body {
 
 //Animações de transição de páginas
 @keyframes enter {
-    0% { opacity: 0; transform: translateX(-500px); }
-    100% { opacity: 1; transform: translateX(0); }
-  }
-  
-  @keyframes exit {
-    0% { opacity: 1; transform: translateX(+150px); }
-    100% { opacity: 0; transform: translateX(+1000px); }
-  }
+    0% {
+        opacity: 0;
+        transform: translateX(-500px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes exit {
+    0% {
+        opacity: 1;
+        transform: translateX(+150px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(+1000px);
+    }
+}
 
 ::view-transition-old(root) {
     animation: exit 0.5s ease 0s 1 normal forwards;
-  }
-  
-  ::view-transition-new(root) {
+}
+
+::view-transition-new(root) {
     animation: enter 1s ease 0s 1 normal forwards;
-  }
-  
+}
+
 
 // Estilização dos componentes do PrimeNG
 
@@ -136,6 +150,8 @@ body {
 
 //Toolbar container
 .toolbar .p-toolbar.p-component {
+    display: flex;
+    justify-content: center;
     width: 100vw;
     margin: 0px;
     border: none;
@@ -235,7 +251,20 @@ div.p-timeline-event-opposite {
     }
 }
 
+@media screen and (min-width: 523px) {
+
+    //Toolbar container
+    .toolbar .p-toolbar.p-component {
+        justify-content: space-between;
+    }
+}
+
 @media screen and (min-width: 769px) {
+
+    // //Toolbar container
+    // .toolbar .p-toolbar.p-component {
+    //     justify-content: stretch;
+    // }
 
     //Sombra menu lateral mobile
     .p-component-overlay.p-sidebar-mask.p-component-overlay-enter.ng-tns-c4029148367-0 {
