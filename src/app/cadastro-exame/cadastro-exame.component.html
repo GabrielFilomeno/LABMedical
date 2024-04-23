@@ -5,11 +5,14 @@
             <i class="pi pi-search"></i>
             <input type="text" pInputText [(ngModel)]="procurarPaciente" />
         </span>
-        <p-button class="btnPesquisar" label="Buscar" [text]="true" [raised]="true" severity="secondary"></p-button>
+        <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
+        <p-button class="btnPesquisar" label="Buscar" (click)="buscarPaciente()" [text]="true" [raised]="true" severity="secondary"></p-button>
     </div>
     <div id="containerCadastro">
         <h3>Exame de [Nome do paciente]</h3>
         <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroExame">
+            <p-toast position="top-right"></p-toast>
+
             <label for="nomeExame">Nome do Exame</label>
             <input id="nomeExame" type="text" pInputText formControlName="nomeExame" />
 
@@ -33,7 +36,7 @@
 
             <p-button label="Editar" [outlined]="true" severity="info"></p-button>
             <p-button label="Deletar" [outlined]="true" severity="danger"></p-button>
-            <p-button label="Salvar"></p-button>
+            <p-button type="ngSubmit" label="Salvar"></p-button>
         </form>
 </div>
 
