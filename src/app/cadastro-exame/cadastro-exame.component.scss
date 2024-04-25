@@ -7,5 +7,23 @@
         margin-top: 20px;
         padding: 1rem 2rem;
         @include border-shadow ();
+
+        .erroLabel {
+            color: red;
+        }
+
+        .erroInput {
+            border: 2px solid red;
+        }
+
+        .avisarErro {
+            color: red;
+        }
+
+        .centralizar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }

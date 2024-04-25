@@ -6,38 +6,118 @@
             <input type="text" pInputText [(ngModel)]="procurarPaciente" />
         </span>
         <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
-        <p-button class="btnPesquisar" label="Buscar" (click)="buscarPaciente()" [text]="true" [raised]="true" severity="secondary"></p-button>
+        <p-button class="btnPesquisar" label="Buscar" (click)="buscarPaciente()" [text]="true" [raised]="true"
+            severity="secondary"></p-button>
     </div>
     <div id="containerCadastro">
+        <h3 *ngIf="paciente === undefined">Procure um paciente para cadastrar um exame</h3>
         <h3>Exame de [Nome do paciente]</h3>
         <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroExame">
             <p-toast position="top-right"></p-toast>
 
-            <label for="nomeExame">Nome do Exame</label>
-            <input id="nomeExame" type="text" pInputText formControlName="nomeExame" />
+            <label for="nomeExame" [ngClass]="{'erroLabel': 
+            formCadastroExame.controls.nomeExame.touched &&
+            formCadastroExame.controls.nomeExame.errors}">
+            * Nome do Exame</label>
 
-            <label for="dataExame">Data do Exame</label>
-            <p-calendar id="dataExame" formControlName="dataExame" [touchUI]="true"></p-calendar>
+            <input id="nomeExame" type="text" pInputText formControlName="nomeExame" 
+            [ngClass]="{'erroInput': formCadastroExame.controls.nomeExame.touched &&
+                                     formCadastroExame.controls.nomeExame.errors}" />
 
-            <label for="horaExame">Hora do Exame</label>
-            <p-calendar id="horaExame" formControlName="horaExame" [touchUI]="true"></p-calendar>
+            <small [ngClass]="{'avisarErro': formCadastroExame.invalid}" *ngIf="
+                    formCadastroExame.controls.nomeExame.touched &&
+                    formCadastroExame.controls.nomeExame.errors">
+                * Campo obrigatório e deve conter no minimo 8 caracteres e no maximo 64 caracteres!
+            </small>
 
-            <label for="tipoExame">Tipo de Exame</label>
-            <input id="tipoExame" type="text" pInputText formControlName="tipoExame" />
+            <label for="dataExame" [ngClass]="{'erroLabel': 
+            formCadastroExame.controls.dataExame.touched &&
+                    formCadastroExame.controls.dataExame.errors}">
+            * Data do Exame</label>
 
-            <label for="laboratorio">Laboratório</label>
-            <input id="laboratorio" type="text" pInputText formControlName="laboratorio" />
+            <p-calendar id="dataExame" formControlName="dataExame" dateFormat="dd/mm/yy" [showIcon]="true" [touchUI]="true"></p-calendar>
+
+            <small [ngClass]="{'avisarErro': formCadastroExame.invalid}" *ngIf="
+                    formCadastroExame.controls.dataExame.touched &&
+                    formCadastroExame.controls.dataExame.errors">
+                * Campo obrigatório e a data deve estar no formato dd/mm/aaaa!
+            </small>
+
+            <label for="horaExame" [ngClass]="{'erroLabel': 
+            formCadastroExame.controls.horaExame.touched &&
+            formCadastroExame.controls.horaExame.errors}">
+            * Hora do Exame</label>
+            
+            <p-calendar #horaExame id="horaExame" formControlName="horaExame" [timeOnly]="true" [showIcon]="true" [touchUI]="true">
+                <ng-template pTemplate="header" ><h3 class="centralizar">* Horário do Exame</h3></ng-template>
+                <ng-template pTemplate="footer" >
+                    <div class="centralizar">
+                        <button type="button" pButton label="Confirmar" (click)="fecharHoraExame(horaExame)"></button>
+                    </div>
+            </ng-template>
+              </p-calendar>
+              
+            <small [ngClass]="{'avisarErro': formCadastroExame.invalid}" *ngIf="
+                    formCadastroExame.controls.horaExame.touched &&
+                    formCadastroExame.controls.horaExame.errors">
+                * Campo obrigatório e a hora deve estar no formato hh:mm!
+            </small>
+
+            <label for="tipoExame" [ngClass]="{'erroLabel': 
+            formCadastroExame.controls.tipoExame.touched &&
+            formCadastroExame.controls.tipoExame.errors}">
+            * Tipo de Exame</label>
+
+            <input id="tipoExame" type="text" pInputText formControlName="tipoExame" 
+            [ngClass]="{'erroInput': formCadastroExame.controls.tipoExame.touched &&
+                                      formCadastroExame.controls.tipoExame.errors}" />
+                                      
+            <small [ngClass]="{'avisarErro': formCadastroExame.invalid}" *ngIf="
+                    formCadastroExame.controls.tipoExame.touched &&
+                    formCadastroExame.controls.tipoExame.errors">
+                * Campo obrigatório e deve conter no minimo 4 caracteres e no maximo 32 caracteres!
+            </small>
+
+            <label for="laboratorio" 
+            [ngClass]="{'erroLabel': 
+            formCadastroExame.controls.laboratorio.touched &&
+            formCadastroExame.controls.laboratorio.errors}">
+            * Laboratório</label>
+
+            <input id="laboratorio" type="text" pInputText formControlName="laboratorio" 
+            [ngClass]="{'erroInput': formCadastroExame.controls.laboratorio.touched &&
+                                      formCadastroExame.controls.laboratorio.errors}" />
+
+            <small [ngClass]="{'avisarErro': formCadastroExame.invalid}" *ngIf="
+                    formCadastroExame.controls.laboratorio.touched &&
+                    formCadastroExame.controls.laboratorio.errors">
+                * Campo obrigatório e deve conter no minimo 4 caracteres e no maximo 32 caracteres!
+            </small>
 
             <label for="urlDocumento">URL do Documento do Exame</label>
             <input id="urlDocumento" type="text" pInputText formControlName="urlDocumento" />
 
-            <label for="resultadoExame">Resultado do Exame</label>
-            <textarea id="resultadoExame" formControlName="resultadoExame" rows="5" cols="30" pInputTextarea [autoResize]="true"></textarea>
+            <label for="resultadoExame" 
+            [ngClass]="{'avisarErro': 
+            formCadastroExame.controls.resultadoExame.touched &&
+            formCadastroExame.controls.resultadoExame.errors}">
+            * Resultado do Exame</label>
 
-            <p-button label="Editar" [outlined]="true" severity="info"></p-button>
-            <p-button label="Deletar" [outlined]="true" severity="danger"></p-button>
+            <textarea id="resultadoExame" formControlName="resultadoExame" rows="5" cols="30" pInputTextarea
+                [autoResize]="true" 
+                [ngClass]="{'erroInput': formCadastroExame.controls.resultadoExame.touched &&
+                                          formCadastroExame.controls.resultadoExame.errors}">
+                </textarea>
+
+            <small [ngClass]="{'avisarErro': formCadastroExame.invalid}" *ngIf="
+                    formCadastroExame.controls.resultadoExame.touched &&
+                    formCadastroExame.controls.resultadoExame.errors">
+                * Campo obrigatório e deve conter no minimo 16 caracteres e no maximo 1024 caracteres!
+            </small>
+
+            <p-button disabled="true" label="Editar" [outlined]="true" severity="info"></p-button>
+            <p-button disabled="true" label="Deletar" [outlined]="true" severity="danger"></p-button>
             <p-button type="ngSubmit" label="Salvar"></p-button>
         </form>
-</div>
-
-
+    </div>
+    

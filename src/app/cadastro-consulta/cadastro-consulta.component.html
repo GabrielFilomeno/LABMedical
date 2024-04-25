@@ -11,30 +11,94 @@
         </div>
     </div>
     <div id="containerCadastro">
+        <h3 *ngIf="paciente === undefined">Procure um paciente para cadastrar uma consulta</h3>
         <h3 *ngIf="paciente">Consulta de {{paciente.nomePaciente}}</h3> 
         <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroConsulta">
-            <label for="motivoConsulta">* Motivo da Consulta</label>
-            <input id="motivoConsulta" type="text" pInputText formControlName="motivoConsulta" />
 
-            <label for="dataConsulta">* Data da Consulta</label>
+            <label for="motivoConsulta" [ngClass]="{'erroLabel': formCadastroConsulta.controls.motivoConsulta.touched &&
+                                                                 formCadastroConsulta.controls.motivoConsulta.errors}">
+            * Motivo da Consulta</label>
+
+            <input id="motivoConsulta" type="text" pInputText formControlName="motivoConsulta" 
+            [ngClass]="{'erroInput': formCadastroConsulta.controls.motivoConsulta.touched &&
+                                     formCadastroConsulta.controls.motivoConsulta.errors}"/>
+
+            <small [ngClass]="{'avisarErro': formCadastroConsulta.invalid}" *ngIf="
+            formCadastroConsulta.controls.motivoConsulta.touched &&
+            formCadastroConsulta.controls.motivoConsulta.errors">
+            * Campo obrigatório e deve conter no minimo 8 caracteres e no maximo 64 caracteres!
+            </small>
+
+            <label for="dataConsulta"
+            [ngClass]="{'erroLabel': formCadastroConsulta.controls.dataConsulta.touched &&
+                                      formCadastroConsulta.controls.dataConsulta.errors}">
+            * Data da Consulta</label>
             <p-calendar id="dataConsulta" formControlName="dataConsulta" dateFormat="dd/mm/yy" [showIcon]="true" [touchUI]="true"></p-calendar>
 
-            <label for="horaConsulta">* Hora da Consulta</label>
-            <p-calendar id="horaConsulta" formControlName="horaConsulta" [timeOnly]="true" [showIcon]="true" [touchUI]="true"></p-calendar>
+            <small [ngClass]="{'avisarErro': formCadastroConsulta.invalid}" *ngIf="
+            formCadastroConsulta.controls.dataConsulta.touched &&
+            formCadastroConsulta.controls.dataConsulta.errors">
+            * Campo obrigatório e a data deve estar no formato dd/mm/aaaa!
+            </small>
 
-            <label for="descProblema">* Descrição do Problema</label>
-            <textarea id="descProblema" formControlName="descProblema" rows="5" cols="30" pInputTextarea [autoResize]="true"></textarea>
+            <label for="horaConsulta" 
+            [ngClass]="{'erroLabel': formCadastroConsulta.controls.horaConsulta.touched &&
+                                      formCadastroConsulta.controls.horaConsulta.errors}">
+            * Hora da Consulta</label>
+
+            <p-calendar #horaConsulta id="horaConsulta" formControlName="horaConsulta" [timeOnly]="true" [showIcon]="true" [touchUI]="true">
+                <ng-template pTemplate="header" ><h3 class="centralizar">Horário da Consulta</h3></ng-template>
+                <ng-template pTemplate="footer" >
+                    <div class="centralizar">
+                        <button type="button" pButton label="Confirmar" (click)="fecharHoraConsulta(horaConsulta)"></button>
+                    </div>
+            </ng-template>
+            </p-calendar>
+
+            <small [ngClass]="{'avisarErro': formCadastroConsulta.invalid}" *ngIf="
+            formCadastroConsulta.controls.horaConsulta.touched &&
+            formCadastroConsulta.controls.horaConsulta.errors">
+            * Campo obrigatório e a hora deve estar no formato hh:mm!
+            </small>
+
+            <label for="descProblema" 
+            [ngClass]="{'erroLabel': formCadastroConsulta.controls.descProblema.touched &&
+                                      formCadastroConsulta.controls.descProblema.errors}">
+            * Descrição do Problema</label>
+
+            <textarea id="descProblema" formControlName="descProblema" rows="5" cols="30" pInputTextarea [autoResize]="true" 
+            [ngClass]="{'erroInput': formCadastroConsulta.controls.descProblema.touched &&
+                                      formCadastroConsulta.controls.descProblema.errors}">
+            </textarea>
+
+            <small [ngClass]="{'avisarErro': formCadastroConsulta.invalid}" *ngIf="
+            formCadastroConsulta.controls.descProblema.touched &&
+            formCadastroConsulta.controls.descProblema.errors">
+            * Campo obrigatório e deve conter no minimo 16 caracteres e no maximo 1024 caracteres!
+            </small>
 
             <label for="medicacaoReceitada">Medicação Receitada</label>
             <textarea id="medicacaoReceitada" formControlName="medicacaoReceitada" rows="2" cols="30" pInputTextarea [autoResize]="true"></textarea>
 
-            <label for="dosagensPrecaucoes">* Dosagens e Precauções</label>
-            <textarea id="dosagensPrecaucoes" formControlName="dosagensPrecaucoes" rows="2" cols="30" pInputTextarea [autoResize]="true"></textarea>
+            <label for="dosagensPrecaucoes" 
+            [ngClass]="{'erroLabel': formCadastroConsulta.controls.dosagensPrecaucoes.touched &&
+                                      formCadastroConsulta.controls.dosagensPrecaucoes.errors}">
+            * Dosagens e Precauções</label>
 
-            <p-button label="Editar" [outlined]="true" severity="info"></p-button>
-            <p-button label="Deletar" [outlined]="true" severity="danger"></p-button>
+            <textarea id="dosagensPrecaucoes" formControlName="dosagensPrecaucoes" rows="2" cols="30" pInputTextarea [autoResize]="true" 
+            [ngClass]="{'erroInput': formCadastroConsulta.controls.dosagensPrecaucoes.touched &&
+                                      formCadastroConsulta.controls.dosagensPrecaucoes.errors}">
+            </textarea>
+
+            <small [ngClass]="{'avisarErro': formCadastroConsulta.invalid}" *ngIf="
+            formCadastroConsulta.controls.dosagensPrecaucoes.touched &&
+            formCadastroConsulta.controls.dosagensPrecaucoes.errors">
+            * Campo obrigatório e deve conter no minimo 16 caracteres e no maximo 256 caracteres!
+            </small>
+
+            <p-button disabled="true" label="Editar" [outlined]="true" severity="info"></p-button>
+            <p-button disabled="true" label="Deletar" [outlined]="true" severity="danger"></p-button>
             <p-button type="ngSubmit" label="Salvar"></p-button>
         </form>
         <div class="card flex justify-content-center gap-2">
 </div>
-
