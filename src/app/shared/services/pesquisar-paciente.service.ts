@@ -39,26 +39,25 @@ export class PesquisarPacienteService {
 
     if (listaPacientes) {
       this.pacientes = JSON.parse(listaPacientes);
+    } else {
+      this.messageService.add({ severity: 'warn', summary: 'Aviso', detail: 'Não há pacientes cadastrados.' });
     }
   }
-
-
-  buscarPaciente(nome: string): Observable<any> {
-    return new Observable(observer => {
-      if (!nome) {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha o nome para procurar o paciente.' });
-      } else {
-        const nomeNormalizado = nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-
-        let paciente = this.pacientes.find((paciente) =>
-          paciente.nomePaciente.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() === nomeNormalizado
+    
+    
+    buscarPaciente(nome: string): Observable<any> {
+      return new Observable(observer => {
+          const nomeNormalizado = nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+          
+          let paciente = this.pacientes.find((paciente) =>
+            paciente.nomePaciente.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() === nomeNormalizado
         );
         if (!paciente) {
           return this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Paciente não encontrado.' });
         }
         observer.next(paciente);
         observer.complete();
-      }
+      
     })
   }
 }
