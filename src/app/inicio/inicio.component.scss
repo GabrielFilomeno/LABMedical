@@ -34,6 +34,14 @@
                     margin-top: 5px;
                     margin-bottom: 0px;
                 }
+
+                h1 {
+                    font-size: 4rem;
+                }
+
+                h3 {
+                    color: #5C5F63;
+                }
             }
         }
     }
@@ -48,20 +56,22 @@
 
         }
 
-        #containerCards {
+        .containerCards {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             width: 100%;
+            margin-bottom: 2rem;
 
 
-            .placeHolder {
+            app-card-paciente {
                 width: 17rem;
-                height: 20rem;
                 margin-top: 25px;
 
-
                 @include border-shadow();
+            }
+            #mostrarTodosPacientes {
+                margin-top: 25px;
             }
         }
     }
@@ -72,17 +82,17 @@
 
         #containerInfo {
 
-            #containerCards {
+            .containerCards {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 grid-gap: 20px;
-              
-              .placeHolder {
-                width: 15rem;
-                margin-right: auto;
-                margin-left: auto;
-              }
-              
+
+                app-card-paciente {
+                    width: 15rem;
+                    margin-right: auto;
+                    margin-left: auto;
+                }
+
             }
         }
     }
@@ -114,15 +124,14 @@
 
         #containerInfo {
 
-            #containerCards {
+            .containerCards {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 grid-column-gap: 5.2%;
 
-                .placeHolder {
+                app-card-paciente {
                     width: 100%;
                     max-width: 28rem;
-                    height: 20rem;
                     margin-right: 0px;
                     margin-left: 0px;
                 }

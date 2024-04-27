@@ -1,0 +1,14 @@
+<div id="card">
+    <div id="enfeite"></div>
+    <img src="../../../assets/Imagens/paciente.jpg" alt="paciente">
+
+    <h2 id="nome">{{pacientes.nomePaciente}}</h2>
+
+    <span id="idade">{{ pacientes.dataNascimento | idade }} Anos</span>
+
+    <span id="telefone" class="marginTop">{{ pacientes.telefone }}</span>
+
+    <span id="convenio" class="marginTop" [ngClass]="{'semPlano': !pacientes.convenio}">{{ pacientes.convenio ? pacientes.convenio : 'Sem Plano' }}</span>
+
+    <a id="verMais"><i class="pi pi-external-link"></i> Ver mais</a>
+</div>

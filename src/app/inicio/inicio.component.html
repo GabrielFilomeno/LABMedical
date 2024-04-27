@@ -1,59 +1,43 @@
 <div id="containerInicio">
     <div id="containerEstatisticas">
-        <h2>Estatisticas do Sistema</h2>
+        <h3>Estatisticas do Sistema</h3>
 
         <div id="containerNumeros">
             <div class="numeros">
                 <span class="img-numero">
                     <img src="../../assets/Imagens/numerosPacientes.png" alt="numeros-pacientes">
-                    <h2 class="hMargin">10</h2>
+                    <h1 class="hMargin">{{pacientes.length}}</h1>
                 </span>
-                <h4 class="hMargin">Pacientes</h4>
+                <h3 class="hMargin">Pacientes</h3>
             </div>
             <div class="numeros">
                 <span class="img-numero">
                     <img src="../../assets/Imagens/numerosConsultas.png" alt=" numeros-consultas">
-                    <h2 class="hMargin">10</h2>
+                    <h1 class="hMargin">{{totalConsultas}}</h1>
                 </span>
-                <h4 class="hMargin">Consultas</h4>
+                <h3 class="hMargin">Consultas</h3>
             </div>
             <div class="numeros">
                 <span class="img-numero">
                     <img src="../../assets/Imagens/numerosExames.png" alt="numeros-exames">
-                    <h2 class="hMargin">10</h2>
+                    <h1 class="hMargin">{{totalExames}}</h1>
                 </span>
-                <h4 class="hMargin">Exames</h4>
+                <h3 class="hMargin">Exames</h3>
             </div>
         </div>
     </div>
     <div id="containerInfo">
-        <h2>Informações Rápidas de Paciêntes</h2>
+        <h3>Informações Rápidas de Paciêntes</h3>
         <div id="containerPesquisar">
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
-                <input type="text" pInputText [(ngModel)]="nome" />
+                <input type="text" pInputText [(ngModel)]="procurarPaciente" />
             </span>
-            <p-button class="btnPesquisar" label="Buscar" [text]="true" [raised]="true" severity="secondary"></p-button>
-        </div>
-        <div id="containerCards">
-                <div class="placeHolder">
-
-                </div>
-                <div class="placeHolder">
-
-                </div>
-                <div class="placeHolder">
-
-                </div>
-                <div class="placeHolder">
-
-                </div>
-                <div class="placeHolder">
-
-                </div>
-                <div class="placeHolder">
-
-                </div>
+            <p-button class="btnPesquisar" label="Buscar" (click)="buscarPaciente()" [text]="true" [raised]="true" severity="secondary"></p-button>
+            </div>
+        <div class="containerCards">
+            <app-card-paciente *ngFor="let paciente of  listaPacientes" [pacientes]="paciente"></app-card-paciente>
+            <p-button *ngIf="listaPacientes.length === 1" id="mostrarTodosPacientes" class="btnPesquisar" label="Mostrar todos os pacientes" (click)="mostrarTodosPacientes()" [outlined]="true" [raised]="true" severity="secondary"></p-button>
         </div>
     </div>
 </div>

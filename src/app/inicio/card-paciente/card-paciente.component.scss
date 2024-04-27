@@ -1,0 +1,66 @@
+#card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    #enfeite {
+        width: 100%;
+        height: 5rem;
+        margin-bottom: 2.5rem;
+        background-color: #8CBAD2;
+    }
+
+    img {
+        position: absolute;
+        margin-top: 2.5rem;
+        width: 5rem;
+        border-radius: 100%;
+      }
+
+      #nome {
+        margin: 1rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .marginTop {
+        margin-top: 1rem;
+    }
+
+      #idade {
+        font-size: medium;
+        font-family: fantasy;
+        color: #5C5F63;
+      }
+
+      #telefone {
+        font-size: x-large;
+        font-family: fantasy;
+        color: #5C5F63;
+      }
+
+      #convenio {
+        font-size: x-large;
+        font-family: fantasy;
+        color: #003478;
+      }
+      
+      .semPlano{
+        color: #F55F1F !important;
+      }
+
+      #verMais {
+        text-align: center;
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+        border-top: 2px solid #5c5f6346;
+        font-family: fantasy;
+        color: #5C5F63;
+
+        &:hover {
+            cursor: pointer;
+        }
+      }
+      
+}
