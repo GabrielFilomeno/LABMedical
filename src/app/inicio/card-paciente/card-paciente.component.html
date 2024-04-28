@@ -1,0 +1,66 @@
+<div id="card">
+    <div id="enfeite"></div>
+    <img src="../../../assets/Imagens/paciente.jpg" alt="paciente">
+
+    <h2 id="nome">{{pacientes.nomePaciente}}</h2>
+
+    <span id="idade">{{ pacientes.dataNascimento | idade }} Anos</span>
+
+    <span id="telefone" class="marginTop">{{ pacientes.telefone }}</span>
+
+    <span id="convenio" class="marginTop" [ngClass]="{'semPlano': !pacientes.convenio}">{{ pacientes.convenio ?
+        pacientes.convenio : 'Sem Plano' }}</span>
+
+    <a id="verMais" (click)="showDialog()"><i class="pi pi-external-link"></i> Ver mais</a>
+</div>
+<div id="detalhesPaciente">
+    <p-toast></p-toast>
+    <p-dialog header="Dados do Paciente" [(visible)]="visible" (onHide)="editarPaciente()">
+        <div id="containerBtns">
+            <p-button *ngIf="editar === false" class="btns" label="Editar" (click)="editarPaciente()" [outlined]="true" severity="info"></p-button>
+            <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
+            <p-button *ngIf="editar === false" class="btns" label="Deletar" (click)="deletarPaciente(pacientes.idPaciente)" [outlined]="true" severity="danger"></p-button>
+        </div>
+        <div id="containerDados" *ngIf="editar === false">
+            <h3>Dados</h3>
+            <span class="dados" class="dados">Nome Completo: {{pacientes.nomePaciente}}</span>
+            <span class="dados">Gênero: {{ pacientes.genero }}</span>
+            <span class="dados">Data de Nascimento: {{ pacientes.dataNascimento }}</span>
+            <span class="dados">Idade: {{ pacientes.dataNascimento | idade }}</span>
+            <span class="dados">CPF: {{ pacientes.cpf }}</span>
+            <span class="dados">RG: {{ pacientes.rg }}</span>
+            <span class="dados">Estado Civil: {{ pacientes.estadoCivil }}</span>
+            <span class="dados">Telefone: {{ pacientes.telefone }}</span>
+            <span class="dados">E-Mail: {{ pacientes.email }}</span>
+            <span class="dados">Naturalidade: {{ pacientes.naturalidade }}</span>
+            <span class="dados">Contato de Emergência: {{ pacientes.contatoEmergencia }}</span>
+            <span class="dados">Lista de Alergias: {{ pacientes.alergias }}</span>
+            <span class="dados">Lista de Cuidados Específicos: {{ pacientes.cuidadosEspecificos }}</span>
+            <h3>Convênio</h3>
+            <span class="dados">Convênio: {{ pacientes.convenio }}</span>
+            <span class="dados">Número do Convênio: {{ pacientes.numeroCarteira }}</span>
+            <span class="dados">Validade do Convênio: {{ pacientes.numeroConvenio }}</span>
+            <h3>Consultas</h3>
+            <span class="dados">Número de consultas: {{ pacientes.consultas ? pacientes.consultas.length : 0 }}</span>
+            <h3>Exames</h3>
+            <span class="dados">Número de exames: {{ pacientes.exames ? pacientes.exames.length : 0 }}</span>
+            <h3>Endereço</h3>
+            <span class="dados">CEP: {{ pacientes.cep }}</span>
+            <span class="dados">Cidade: {{ pacientes.cidade }}</span>
+            <span class="dados">Estado: {{ pacientes.estado }}</span>
+            <span class="dados">Logradouro: {{ pacientes.logradouro }}</span>
+            <span class="dados">Número: {{ pacientes.numero }}</span>
+            <span class="dados">Complemento: {{ pacientes.complemento }}</span>
+            <span class="dados">Bairro {{ pacientes.bairro }}</span>
+            <span class="dados">Ponto de Referência {{ pacientes.pontoReferencia }}</span>
+        </div>
+        <div *ngIf="editar === true">
+            <app-cadastro-paciente></app-cadastro-paciente>
+        </div>
+        <div  id="btnCancelar">
+            <p-button *ngIf="editar === true" label="Voltar" (click)="editarPaciente()" [outlined]="true" severity="info"></p-button>
+        </div>
+    </p-dialog>
+</div>
+
+<!-- motivo da consulta e data consulta, nome do exame e data exame, validações na hora de editar e atualizar dados ao salvar edição -->

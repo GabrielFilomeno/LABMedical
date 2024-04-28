@@ -1,86 +1,98 @@
 <div id="containerPagCadastro">
-    <h2>Preencha os campos para cadastrar</h2>
+    <h2 *ngIf="router.url === '/cadastro-paciente'">Preencha os campos para cadastrar</h2>
+    <h2 *ngIf="router.url === '/inicio'">Preencha os campos para editar</h2>
     <div id="containerCadastro">
         <h3>Identificação</h3>
         <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroPaciente">
             <p-toast position="top-right"></p-toast>
             <label for="nomeCompleto">Nome Completo</label>
-            <input id="nomeCompleto" type="text" pInputText formControlName="nomePaciente"/>
+            <input id="nomeCompleto" type="text" pInputText formControlName="nomePaciente" />
 
             <label for="genero">Gênero</label>
-            <p-dropdown id="genero" formControlName="genero" [options]="generos" placeholder="Selecione um gênero"></p-dropdown>
+            <p-dropdown id="genero" formControlName="genero" [options]="generos"
+                placeholder="Selecione um gênero"></p-dropdown>
 
             <label for="dataNascimento">Data Nascimento</label>
-            <p-calendar id="dataNascimento" formControlName="dataNascimento" [touchUI]="true"></p-calendar>
+            <p-calendar id="dataNascimento" formControlName="dataNascimento" dateFormat="dd/mm/yy" [autoZIndex]="false"
+                [touchUI]="true"></p-calendar>
 
             <label for="cpf">CPF</label>
             <p-inputMask id="cpf" formControlName="cpf" mask="999.999.999-99"></p-inputMask>
 
             <label for="rg">RG e Orgão Expeditor</label>
-            <input id="rg" type="text" pInputText formControlName="rg"/>
+            <input id="rg" type="text" pInputText formControlName="rg" />
 
             <label for="estadoCivil">Estado civil</label>
-            <p-dropdown id="estadoCivil" formControlName="estadoCivil" [options]="estadosCivis" placeholder="Selecione um estado civil"></p-dropdown>
-            
+            <p-dropdown id="estadoCivil" formControlName="estadoCivil" [options]="estadosCivis"
+                placeholder="Selecione um estado civil"></p-dropdown>
+
             <label for="telefone">Telefone</label>
             <p-inputMask id="telefone" formControlName="telefone" mask="(99) 9 9999-9999"></p-inputMask>
 
             <label for="email">E-Mail</label>
-            <input id="email" type="text" pInputText formControlName="email"/>
+            <input id="email" type="text" pInputText formControlName="email" />
 
             <label for="naturalidade">Naturalidade</label>
-            <input id="naturalidade" type="text" pInputText formControlName="naturalidade"/>
+            <input id="naturalidade" type="text" pInputText formControlName="naturalidade" />
 
             <label for="contatoEmergencia">Contato de Emergência</label>
-            <p-inputMask id="contatoEmergencia" formControlName="contatoEmergencia" mask="(99) 9 9999-9999"></p-inputMask>
+            <p-inputMask id="contatoEmergencia" formControlName="contatoEmergencia"
+                mask="(99) 9 9999-9999"></p-inputMask>
 
             <label for="alergias">Alergias</label>
-            <input id="alergias" type="text" pInputText formControlName="alergias"/>
+            <input id="alergias" type="text" pInputText formControlName="alergias" />
 
             <label for="cuidadosEspecificos">Cuidados Específicos</label>
-            <input id="cuidadosEspecificos" type="text" pInputText formControlName="cuidadosEspecificos"/>
+            <input id="cuidadosEspecificos" type="text" pInputText formControlName="cuidadosEspecificos" />
 
             <h3>Convênio</h3>
 
             <label for="convenio">Convênio</label>
-            <input id="convenio" type="text" pInputText formControlName="convenio"/>
+            <input id="convenio" type="text" pInputText formControlName="convenio" />
 
-            <label for="numeroCarteira">Número da Carteira</label>
-            <p-inputNumber inputId="integeronly" formControlName="numeroCarteira" [useGrouping]="false"></p-inputNumber>
+            <label for="numeroConvenio">Número do Convênio</label>
+            <p-inputNumber id="numeroConvenio" inputId="integeronly" formControlName="numeroConvenio"
+                [useGrouping]="false"></p-inputNumber>
 
             <label for="validade">Validade</label>
-            <p-calendar id="validade" formControlName="validade" [touchUI]="true"></p-calendar>
+            <p-calendar id="validade" formControlName="validade" dateFormat="dd/mm/yy" [autoZIndex]="false"
+                [touchUI]="true"></p-calendar>
 
             <h3>Dados do Endereço</h3>
 
             <label for="cep">CEP</label>
             <p-inputMask id="cep" formControlName="cep" mask="99999-999"></p-inputMask>
-            <p-button type="button" label="Procurar CEP" (click)="procurarCep()" [outlined]="true" severity="info"></p-button>
+            <p-button type="button" label="Procurar CEP" (click)="procurarCep()" [outlined]="true"
+                severity="info"></p-button>
 
             <label for="cidade">Cidade</label>
-            <input id="cidade" type="text" pInputText formControlName="cidade"/>
+            <input id="cidade" type="text" pInputText formControlName="cidade" />
 
             <label for="estado">Estado</label>
-            <input id="estado" type="text" pInputText formControlName="estado"/>
+            <input id="estado" type="text" pInputText formControlName="estado" />
 
             <label for="logradouro">Logradouro</label>
-            <input id="logradouro" type="text" pInputText formControlName="logradouro"/>
+            <input id="logradouro" type="text" pInputText formControlName="logradouro" />
 
             <label for="numero">Número</label>
-            <input id="numero" type="text" pInputText formControlName="numero"/>
+            <input id="numero" type="text" pInputText formControlName="numero" />
 
             <label for="complemento">Complemento</label>
-            <input id="complemento" type="text" pInputText formControlName="complemento"/>
+            <input id="complemento" type="text" pInputText formControlName="complemento" />
 
             <label for="bairro">Bairro</label>
-            <input id="bairro" type="text" pInputText formControlName="bairro"/>
+            <input id="bairro" type="text" pInputText formControlName="bairro" />
 
             <label for="pontoReferencia">Ponto de Referência</label>
-            <input id="pontoReferencia" type="text" pInputText formControlName="pontoReferencia"/>
+            <input id="pontoReferencia" type="text" pInputText formControlName="pontoReferencia" />
 
-            <p-button label="Editar" [outlined]="true" severity="info"></p-button>
-            <p-button label="Deletar" [outlined]="true" severity="danger"></p-button>
-            <p-button type="ngSubmit" label="Salvar"></p-button>
+            <div *ngIf="router.url === '/inicio'">
+                <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
+                <p-button (click)="editar()" type="button" label="Salvar" [outlined]="true"
+                severity="info"></p-button>
+            </div>
+
+            <p-button *ngIf="router.url === '/cadastro-paciente'" type="ngSubmit" label="Salvar"></p-button>
         </form>
     </div>
 </div>
