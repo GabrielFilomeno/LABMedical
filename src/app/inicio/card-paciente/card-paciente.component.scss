@@ -1,3 +1,5 @@
+@import'../../shared/mixins/mixins.scss';
+
 #card {
     display: flex;
     flex-direction: column;
@@ -15,40 +17,40 @@
         margin-top: 2.5rem;
         width: 5rem;
         border-radius: 100%;
-      }
+    }
 
-      #nome {
+    #nome {
         margin: 1rem;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
+    }
 
-      .marginTop {
+    .marginTop {
         margin-top: 1rem;
     }
 
-      #idade {
+    #idade {
         font-size: medium;
         font-family: fantasy;
         color: #5C5F63;
-      }
+    }
 
-      #telefone {
+    #telefone {
         font-size: x-large;
         font-family: fantasy;
         color: #5C5F63;
-      }
+    }
 
-      #convenio {
+    #convenio {
         font-size: x-large;
         font-family: fantasy;
         color: #003478;
-      }
-      
-      .semPlano{
-        color: #F55F1F !important;
-      }
+    }
 
-      #verMais {
+    .semPlano {
+        color: #F55F1F !important;
+    }
+
+    #verMais {
         text-align: center;
         width: 100%;
         margin-top: 1rem;
@@ -61,6 +63,38 @@
         &:hover {
             cursor: pointer;
         }
-      }
-      
+    }
+}
+
+#containerBtns {
+    display: flex;
+    justify-content: end;
+
+    .btns{
+        margin: 0.5rem;
+    }   
+}
+
+#containerDados {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    padding: 0.5rem;
+    border: solid 1px black;
+    @include border-shadow ();
+
+    .dados {
+        margin: 0.5rem;
+        border-bottom: 1px solid black;
+    }
+
+}
+#btnCancelar{
+    margin-top: 1rem;
+}
+
+@media screen and (min-width: 769px) {
+    #containerDados {
+        width: 50vw;
+    }
 }

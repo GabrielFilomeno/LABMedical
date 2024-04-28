@@ -33,11 +33,15 @@
                 <i class="pi pi-search"></i>
                 <input type="text" pInputText [(ngModel)]="procurarPaciente" />
             </span>
-            <p-button class="btnPesquisar" label="Buscar" (click)="buscarPaciente()" [text]="true" [raised]="true" severity="secondary"></p-button>
-            </div>
+            <p-button class="btnPesquisar" label="Buscar" (click)="buscarPaciente()" [text]="true" [raised]="true"
+                severity="secondary"></p-button>
+        </div>
+        <p-toast></p-toast>
         <div class="containerCards">
-            <app-card-paciente *ngFor="let paciente of  listaPacientes" [pacientes]="paciente"></app-card-paciente>
-            <p-button *ngIf="listaPacientes.length === 1" id="mostrarTodosPacientes" class="btnPesquisar" label="Mostrar todos os pacientes" (click)="mostrarTodosPacientes()" [outlined]="true" [raised]="true" severity="secondary"></p-button>
+            <app-card-paciente *ngFor="let paciente of  listaPacientes" [pacientes]="paciente" (atualizarLista)="atualizarListaPacientes()"></app-card-paciente>
+            <p-button *ngIf="listaPacientes.length === 1" id="mostrarTodosPacientes" class="btnPesquisar"
+                label="Mostrar todos os pacientes" (click)="mostrarTodosPacientes()" [outlined]="true" [raised]="true"
+                severity="secondary"></p-button>
         </div>
     </div>
 </div>

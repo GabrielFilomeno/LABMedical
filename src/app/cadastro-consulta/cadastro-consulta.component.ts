@@ -56,22 +56,22 @@ export class CadastroConsultaComponent {
   buscarPaciente() {
     this.pesquisarPacienteService.buscarPaciente(this.procurarPaciente).subscribe({
       next: (paciente) => {
-          this.confirmationService.confirm({
-            message: `Paciente encontrado: <strong>(${paciente.nomePaciente})</strong>, deseja prosseguir?`,
-            header: 'Confirme o paciente',
-            icon: 'pi pi-exclamation-triangle',
-            acceptIcon: "none",
-            rejectIcon: "none",
-            rejectButtonStyleClass: "p-button-text",
-            accept: () => {
-              this.paciente = paciente;
-              this.habilitarForm()
-            },
-            reject: () => {
-              this.procurarPaciente = '';
-              this.messageService.add({ severity: 'error', summary: 'Paciente Errado', detail: 'Procure outro paciente', life: 3000 });
-            }
-          });
+        this.confirmationService.confirm({
+          message: `Paciente encontrado: <strong>(${paciente.nomePaciente})</strong>, deseja prosseguir?`,
+          header: 'Confirme o paciente',
+          icon: 'pi pi-exclamation-triangle',
+          acceptIcon: "none",
+          rejectIcon: "none",
+          rejectButtonStyleClass: "p-button-text",
+          accept: () => {
+            this.paciente = paciente;
+            this.habilitarForm()
+          },
+          reject: () => {
+            this.procurarPaciente = '';
+            this.messageService.add({ severity: 'error', summary: 'Paciente Errado', detail: 'Procure outro paciente', life: 3000 });
+          }
+        });
       },
       error: () => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Não há pacientes cadastrados. ' });
@@ -126,6 +126,8 @@ export class CadastroConsultaComponent {
         this.paciente = undefined;
         this.procurarPaciente = '';
         this.habilitarForm();
+        this.formCadastroConsulta.controls['dataConsulta'].setValue(new Date);
+        this.formCadastroConsulta.controls['horaConsulta'].setValue(new Date);
       } else {
         return this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Verifique se os campos estão preenchidos corretamente!' });
       }

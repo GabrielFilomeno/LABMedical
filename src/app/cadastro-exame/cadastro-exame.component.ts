@@ -129,6 +129,8 @@ export class CadastroExameComponent {
         this.paciente = undefined;
         this.procurarPaciente = '';
         this.habilitarForm();
+        this.formCadastroExame.controls['dataExame'].setValue(new Date);
+        this.formCadastroExame.controls['horaExame'].setValue(new Date);
       } else {
         return this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Verifique se os campos estão preenchidos corretamente!' });
       }

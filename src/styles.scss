@@ -199,6 +199,11 @@ div.p-timeline-event-opposite {
     display: none;
 }
 
+//Ajudas z-index do calendario.
+.p-datepicker {
+    z-index: 10000 !important;
+  }
+
 @media screen and (max-width: 369px) {
 
     //Toolbar container
