@@ -148,6 +148,7 @@ body {
 
 //Toolbar
 
+
 //Toolbar container
 .toolbar .p-toolbar.p-component {
     display: flex;
@@ -202,10 +203,10 @@ div.p-timeline-event-opposite {
 //Ajudas z-index do calendario.
 .p-datepicker {
     z-index: 10000 !important;
-  }
+}
 
 @media screen and (max-width: 369px) {
-
+    
     //Toolbar container
     .toolbar .p-toolbar.p-component {
         display: flex;
@@ -214,21 +215,21 @@ div.p-timeline-event-opposite {
         justify-content: center;
         font-size: 0.93rem;
     }
-
+    
     //Container do avatar/nome
     .flex.align-items-center.gap-2 {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-
+    
     //Input pesquisar paciente na tela de inicio
-
+    
     //Container do input
     .p-input-icon-left {
         margin-right: 10px;
     }
-
+    
     //Botão pesquisar container
     .btnPesquisar .p-element {
         width: 100%;

@@ -14,14 +14,14 @@ import { ToastModule } from 'primeng/toast';
   templateUrl: './card-paciente.component.html',
   styleUrl: './card-paciente.component.scss',
   imports: [IdadePipe, CommonModule, DialogModule, CadastroPacienteComponent, ButtonModule, ConfirmDialogModule, ToastModule],
-  providers: [ConfirmationService]
+  providers: [ConfirmationService, MessageService]
 })
 export class CardPacienteComponent {
   @Input() pacientes: any;
   @Output() atualizarLista = new EventEmitter<void>();
 
   listaAtualizada: any;
-
+  visible: boolean = false;
   editar: boolean = false
 
   constructor(
@@ -36,7 +36,6 @@ export class CardPacienteComponent {
 
   };
 
-  visible: boolean = false;
 
   showDialog() {
     this.editar = false;

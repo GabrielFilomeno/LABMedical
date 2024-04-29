@@ -1,41 +1,60 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-listar-prontuarios',
   standalone: true,
-  imports: [FormsModule, InputTextModule, ButtonModule, TableModule],
+  imports: [CommonModule, FormsModule, InputTextModule, ButtonModule, ToastModule],
+  providers: [MessageService],
   templateUrl: './listar-prontuarios.component.html',
   styleUrl: './listar-prontuarios.component.scss'
 })
 export class ListarProntuariosComponent {
 
+  pacientes: any;
+  todosPacientes: any;
   procurarPaciente: any;
 
-  paciente = [
-    {
-      registro: 1,
-      nome: 'nome',
-      convenio: 'convenio'
-    },
-    {
-      registro: 2,
-      nome: 'nome',
-      convenio: 'convenio'
+  constructor(
+    private messageService: MessageService,
+    private router: Router
+  ) {};
+
+  ngOnInit(): void {
+    const listaPacientes = localStorage.getItem('listaPacientes');
+    if (listaPacientes) {
+      this.pacientes = JSON.parse(listaPacientes);
+      this.todosPacientes = JSON.parse(listaPacientes);
+    };
+  };
+
+  buscarPaciente() {
+    const nomeNormalizado = this.procurarPaciente.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  
+    let listaTemporaria = this.pacientes.filter((paciente: { nomePaciente: string; }) =>
+      paciente.nomePaciente.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() === nomeNormalizado
+    );
+  
+    if (listaTemporaria.length === 0) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Paciente não encontrado.' });
+    } else {
+      this.pacientes = listaTemporaria;
     }
-  ]
-  pacienteSelecionado: any;
-expanded: any;
+  
+    this.procurarPaciente = '';
+  };
+  mostrarTodosPacientes() {
+    this.pacientes = this.todosPacientes;
+  };
 
-  onRowSelect(event: any) {
-    alert('funcionou')
-}
-
-onRowUnselect(event: any) {
-  alert('sei la')
-}
-
+  prontuarioPaciente(id: number) {
+    console.log(id)
+    this.router.navigate(["listagem-de-prontuarios/prontuario-paciente", id]);
+  }
 }
