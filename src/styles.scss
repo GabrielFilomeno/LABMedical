@@ -48,7 +48,6 @@ body {
 // Estilização dos componentes do PrimeNG
 
 //Buttons
-
 //Buttons pagina de login
 .btnsPrimarios .p-ripple.p-element.p-button.p-component {
     background-color: $cor-botao;
@@ -62,7 +61,6 @@ body {
 }
 
 //Buttons menu lateral
-
 //Botão que abre o menu lateral
 .btnAbrirMenu .p-ripple.p-element.p-button.p-component.p-button-icon-only {
     position: fixed;
@@ -95,7 +93,6 @@ body {
 }
 
 //Menu lateral mobile
-
 //Container
 .menuLateralMobile .ng-trigger-panelState.ng-tns-c4029148367-0.p-sidebar.p-sidebar-active.p-sidebar-left.ng-star-inserted {
     width: 42vw;
@@ -122,7 +119,6 @@ body {
 }
 
 //Menu lateral
-
 //container
 .menuLateral .ng-trigger-panelState.ng-tns-c4029148367-1.p-sidebar.p-sidebar-active.p-sidebar-left.ng-star-inserted {
     width: 25vw;
@@ -147,8 +143,6 @@ body {
 }
 
 //Toolbar
-
-
 //Toolbar container
 .toolbar .p-toolbar.p-component {
     display: flex;
@@ -168,7 +162,6 @@ body {
 }
 
 //Input pesquisar paciente na tela de inicio
-
 //Container do input
 .p-input-icon-left {
     width: 100%;
@@ -179,9 +172,7 @@ body {
     width: 100%;
 }
 
-
 //timeline de consultas e exames
-
 // container do card
 .p-card-body {
     background-color: #d9d9d948;
@@ -224,7 +215,6 @@ div.p-timeline-event-opposite {
     }
     
     //Input pesquisar paciente na tela de inicio
-    
     //Container do input
     .p-input-icon-left {
         margin-right: 10px;
@@ -267,11 +257,6 @@ div.p-timeline-event-opposite {
 
 @media screen and (min-width: 769px) {
 
-    // //Toolbar container
-    // .toolbar .p-toolbar.p-component {
-    //     justify-content: stretch;
-    // }
-
     //Sombra menu lateral mobile
     .p-component-overlay.p-sidebar-mask.p-component-overlay-enter.ng-tns-c4029148367-0 {
         display: none;
@@ -288,7 +273,6 @@ div.p-timeline-event-opposite {
 @media screen and (min-width: 1024px) {
 
     //Menu lateral
-
     //container
     .menuLateral .ng-trigger-panelState.ng-tns-c4029148367-1.p-sidebar.p-sidebar-active.p-sidebar-left.ng-star-inserted {
         width: 17rem;

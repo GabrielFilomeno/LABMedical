@@ -54,7 +54,6 @@ export class ListarProntuariosComponent {
   };
 
   prontuarioPaciente(id: number) {
-    console.log(id)
     this.router.navigate(["listagem-de-prontuarios/prontuario-paciente", id]);
   }
 }

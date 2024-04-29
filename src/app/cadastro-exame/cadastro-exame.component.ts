@@ -178,8 +178,6 @@ export class CadastroExameComponent {
       paciente.exames[indexExame] = exameEditado;
       pacientes[indexPaciente] = paciente;
 
-      console.log(pacientes)
-
       this.confirmationService.confirm({
         key: 'editar',
         message: 'Salvar alterações?',
@@ -204,14 +202,11 @@ export class CadastroExameComponent {
 
   pegarDadosParaEditar() {
     let pacientes = JSON.parse(localStorage.getItem('listaPacientes')!);
-    console.log(pacientes)
     let idEditandoPaciente = JSON.parse(localStorage.getItem('idEditandoPaciente')!);
     let paciente = pacientes.find((paciente: { idPaciente: any; }) => paciente.idPaciente === idEditandoPaciente)
 
     let idEditandoExame = JSON.parse(localStorage.getItem('idEditandoExame')!);
-    console.log(idEditandoExame)
     let exame = paciente.exames.find((exame: { idExame: any; }) => exame.idExame === idEditandoExame);
-    console.log(exame)
 
     this.formCadastroExame.controls['nomeExame'].setValue(exame.nomeExame);
     this.formCadastroExame.controls['dataExame'].setValue(new Date(exame.dataExame));

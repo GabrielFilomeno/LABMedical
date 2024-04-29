@@ -6,7 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { Calendar, CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PesquisarPacienteService } from '../shared/services/pesquisar-paciente.service';
-import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -174,8 +174,6 @@ export class CadastroConsultaComponent {
       paciente.consultas[indexConsulta] = consultaEditada;
       pacientes[indexPaciente] = paciente;
 
-      console.log(pacientes)
-
       this.confirmationService.confirm({
         key: 'editar',
         message: 'Salvar alterações?',
@@ -200,14 +198,11 @@ export class CadastroConsultaComponent {
 
   pegarDadosParaEditar() {
     let pacientes = JSON.parse(localStorage.getItem('listaPacientes')!);
-    console.log(pacientes)
     let idEditandoPaciente = JSON.parse(localStorage.getItem('idEditandoPaciente')!);
     let paciente = pacientes.find((paciente: { idPaciente: any; }) => paciente.idPaciente === idEditandoPaciente)
 
     let idEditandoConsulta = JSON.parse(localStorage.getItem('idEditandoConsulta')!);
-    console.log(idEditandoConsulta)
     let consulta = paciente.consultas.find((consulta: { idConsulta: any; }) => consulta.idConsulta === idEditandoConsulta);
-    console.log(consulta)
 
     this.formCadastroConsulta.controls['motivoConsulta'].setValue(consulta.motivoConsulta);
     this.formCadastroConsulta.controls['dataConsulta'].setValue(new Date(consulta.dataConsulta));
