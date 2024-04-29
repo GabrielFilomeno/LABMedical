@@ -1,17 +1,17 @@
 <div id="pagCadastroConsulta">
-    <h2>Encontre o paciente</h2>
-    <div id="containerPesquisar">
+    <div id="containerPesquisar" *ngIf="this.router.url === '/cadastro-consulta'">
+        <h2>Encontre o paciente</h2>
         <p-toast position="top-right"></p-toast>
         <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
             <input type="text" pInputText [(ngModel)]="procurarPaciente" />
         </span>
-        <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>   
+        <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" key="cadastrar"></p-confirmDialog>   
             <p-button class="btnPesquisar" (click)="buscarPaciente()" label="Buscar" [text]="true" [raised]="true" severity="secondary"></p-button>
         </div>
     </div>
     <div id="containerCadastro">
-        <h3 *ngIf="paciente === undefined">Procure um paciente para cadastrar uma consulta</h3>
+        <h3 *ngIf="paciente === undefined && this.router.url === '/cadastro-consulta'">Procure um paciente para cadastrar uma consulta</h3>
         <h3 *ngIf="paciente">Consulta de {{paciente.nomePaciente}}</h3> 
         <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroConsulta">
 
@@ -96,9 +96,11 @@
             * Campo obrigatório e deve conter no minimo 16 caracteres e no maximo 256 caracteres!
             </small>
 
-            <p-button disabled="true" label="Editar" [outlined]="true" severity="info"></p-button>
-            <p-button disabled="true" label="Deletar" [outlined]="true" severity="danger"></p-button>
-            <p-button type="ngSubmit" label="Salvar"></p-button>
+            <p-button *ngIf="this.router.url === '/cadastro-consulta'" type="ngSubmit" label="Salvar"></p-button>
+
+            <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" key="editar"></p-confirmDialog>
+            <p-button *ngIf="this.router.url !== '/cadastro-consulta'" type="button" label="Salvar" (click)="editarConsulta()"></p-button>
+            <p-button *ngIf="this.router.url !== '/cadastro-consulta'" type="button" label="Deletar" (click)="deletarConsulta()" [outlined]="true" severity="danger"></p-button>
         </form>
         <div class="card flex justify-content-center gap-2">
 </div>

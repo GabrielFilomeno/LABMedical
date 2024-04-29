@@ -26,13 +26,17 @@
     .containerCards {
         display: flex;
         margin: 1rem 0rem;
-        cursor: pointer;
-
+        
         @include border-shadow();
         border-radius: 5px;
+        
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(128, 128, 128, 0.274);
+        }
 
         &:active {
-            background-color: rgba(128, 128, 128, 0.384);
+            background-color: rgba(128, 128, 128, 0.637);
         }
 
         .cards {

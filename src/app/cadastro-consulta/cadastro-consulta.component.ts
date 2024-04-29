@@ -9,6 +9,8 @@ import { PesquisarPacienteService } from '../shared/services/pesquisar-paciente.
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EventoEditarService } from '../shared/services/evento-editar.service';
 
 @Component({
   selector: 'app-cadastro-consulta',
@@ -32,10 +34,20 @@ export class CadastroConsultaComponent {
   paciente: any | undefined;
 
   constructor(
+    public router: Router,
+    public activatedRoute: ActivatedRoute,
     private messageService: MessageService,
     private pesquisarPacienteService: PesquisarPacienteService,
+    private eventoEditarService: EventoEditarService,
     private confirmationService: ConfirmationService
-  ) { this.habilitarForm() };
+  ) { 
+    this.habilitarForm() 
+
+    if (this.router.url !== '/cadastro-consulta') {
+      this.pegarDadosParaEditar();
+      this.formCadastroConsulta.enable();
+    }
+  };
 
   habilitarForm() {
     if (this.paciente) {
@@ -57,6 +69,7 @@ export class CadastroConsultaComponent {
     this.pesquisarPacienteService.buscarPaciente(this.procurarPaciente).subscribe({
       next: (paciente) => {
         this.confirmationService.confirm({
+          key: 'cadastrar',
           message: `Paciente encontrado: <strong>(${paciente.nomePaciente})</strong>, deseja prosseguir?`,
           header: 'Confirme o paciente',
           icon: 'pi pi-exclamation-triangle',
@@ -134,5 +147,102 @@ export class CadastroConsultaComponent {
     } else {
       return this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Procure um paciente para cadastrar a consulta!' });
     }
+  };
+
+  editarConsulta() {
+    if (this.formCadastroConsulta.valid) {
+      let pacientes = JSON.parse(localStorage.getItem('listaPacientes')!);
+      let idEditandoPaciente = JSON.parse(localStorage.getItem('idEditandoPaciente')!);
+      let paciente = pacientes.find((paciente: { idPaciente: any; }) => paciente.idPaciente === idEditandoPaciente)
+      const indexPaciente = pacientes.findIndex((paciente: { idPaciente: any; }) => paciente.idPaciente === idEditandoPaciente);
+
+      let idEditandoConsulta = JSON.parse(localStorage.getItem('idEditandoConsulta')!);
+      let consulta = paciente.consultas.find((consulta: { idConsulta: any; }) => consulta.idConsulta === idEditandoConsulta);
+
+      const indexConsulta = paciente.consultas.findIndex((consulta: { idConsulta: any; }) => consulta.idConsulta === idEditandoConsulta);
+
+      let consultaEditada = {
+        idConsulta: idEditandoConsulta,
+        motivoConsulta: this.formCadastroConsulta.value.motivoConsulta,
+        dataConsulta: this.formCadastroConsulta.value.dataConsulta,
+        horaConsulta: this.formCadastroConsulta.value.horaConsulta,
+        descProblema: this.formCadastroConsulta.value.descProblema,
+        medicacaoReceitada: this.formCadastroConsulta.value.medicacaoReceitada,
+        dosagensPrecaucoes: this.formCadastroConsulta.value.dosagensPrecaucoes
+      };
+
+      paciente.consultas[indexConsulta] = consultaEditada;
+      pacientes[indexPaciente] = paciente;
+
+      console.log(pacientes)
+
+      this.confirmationService.confirm({
+        key: 'editar',
+        message: 'Salvar alterações?',
+        header: `Dados do consulta de ${paciente.nomePaciente} foram alterados`,
+        icon: 'pi pi-exclamation-triangle',
+        acceptIcon: "none",
+        rejectIcon: "none",
+        rejectButtonStyleClass: "p-button-text",
+        accept: () => {
+          localStorage.setItem('listaPacientes', JSON.stringify(pacientes))
+          this.eventoEditarService.emitEvent('eventoEditar');
+        },
+        reject: () => {
+          this.messageService.add({ severity: 'info', summary: 'Info', detail: 'As alterações não foram salvas', life: 3500 });
+        }
+      });
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Verifique se os campos estão preenchidos corretamente.' });
+      return;
+    };
+  };
+
+  pegarDadosParaEditar() {
+    let pacientes = JSON.parse(localStorage.getItem('listaPacientes')!);
+    console.log(pacientes)
+    let idEditandoPaciente = JSON.parse(localStorage.getItem('idEditandoPaciente')!);
+    let paciente = pacientes.find((paciente: { idPaciente: any; }) => paciente.idPaciente === idEditandoPaciente)
+
+    let idEditandoConsulta = JSON.parse(localStorage.getItem('idEditandoConsulta')!);
+    console.log(idEditandoConsulta)
+    let consulta = paciente.consultas.find((consulta: { idConsulta: any; }) => consulta.idConsulta === idEditandoConsulta);
+    console.log(consulta)
+
+    this.formCadastroConsulta.controls['motivoConsulta'].setValue(consulta.motivoConsulta);
+    this.formCadastroConsulta.controls['dataConsulta'].setValue(new Date(consulta.dataConsulta));
+    this.formCadastroConsulta.controls['horaConsulta'].setValue(consulta.horaConsulta);
+    this.formCadastroConsulta.controls['descProblema'].setValue(consulta.descProblema);
+    this.formCadastroConsulta.controls['medicacaoReceitada'].setValue(consulta.medicacaoReceitada);
+    this.formCadastroConsulta.controls['dosagensPrecaucoes'].setValue(consulta.dosagensPrecaucoes);
+  };
+
+  deletarConsulta() {
+    let pacientes = JSON.parse(localStorage.getItem('listaPacientes')!);
+    let idEditandoPaciente = JSON.parse(localStorage.getItem('idEditandoPaciente')!);
+    let paciente = pacientes.find((paciente: { idPaciente: any; }) => paciente.idPaciente === idEditandoPaciente)
+    const indexPaciente = pacientes.findIndex((paciente: { idPaciente: any; }) => paciente.idPaciente === idEditandoPaciente);
+    let idEditandoConsulta = JSON.parse(localStorage.getItem('idEditandoConsulta')!);
+    const novaListaConsultas = paciente.consultas.filter((consulta: { idConsulta: number; }) => consulta.idConsulta !== idEditandoConsulta);
+
+    this.confirmationService.confirm({
+      key: 'editar',
+      message: `Você está prestes a deletar o consulta ${paciente.nomePaciente}. Tem certeza de que deseja continuar?`,
+      header: 'Deletar consulta',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
+      accept: () => {
+        paciente.consultas = novaListaConsultas;
+        pacientes[indexPaciente] = paciente;
+        localStorage.setItem('listaPacientes', JSON.stringify(pacientes));
+        this.eventoEditarService.emitEvent('eventoEditar');
+        this.messageService.add({ severity: 'info', summary: 'Info', detail: `O consulta do paciente ${paciente.nomePaciente} foi deletado com sucesso.`, life: 3500 });
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'info', summary: 'Info', detail: `A ação de deletar o consulta do paciente ${paciente.nomePaciente} foi cancelada.`, life: 3500 });
+      }
+    });
   };
 }

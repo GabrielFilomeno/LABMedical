@@ -220,7 +220,7 @@ export class CadastroPacienteComponent {
         message: 'Salvar alterações?',
         header: `Dados do paciente ${paciente.nomePaciente} foram alterados`,
         icon: 'pi pi-exclamation-triangle',
-        acceptIcon: "Sim",
+        acceptIcon: "none",
         rejectIcon: "none",
         rejectButtonStyleClass: "p-button-text",
         accept: () => {

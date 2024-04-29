@@ -1,27 +1,60 @@
 <div id="containerProntuarioPaciente">
     <div id="containerDados">
-        <h2>Paciente [Nome do Paciente]</h2>
-        <span>Convênio: Convênio</span>
-        <span>Alergias: Alergias </span>
+        <h2>Paciente {{ paciente.nomePaciente }}</h2>
+        <span>Convênio: {{ paciente.convenio }}</span>
+        <span>Alergias: {{ paciente.alergias }} </span>
     </div>
 
     <div id="containerCards">
         <div class="card">
-            <p-timeline [value]="eventos" align="left" styleClass="customized-timeline">
-                <ng-template pTemplate="marker" let-event>
+            <span *ngIf="prontuarios.length === 0">Esse paciente não tem consultas ou exames cadastrados.</span>
+            <p-timeline [value]="prontuarios" align="left" styleClass="customized-timeline">
+                <ng-template pTemplate="marker" let-prontuarios>
                     <span id="teste">
-                        <img class="imagem" [src]="event.imagem" alt="Ícone personalizado" width="70" height="75">
+                        <img class="imagem" [src]="prontuarios.imagem" alt="Ícone personalizado" width="70" height="75">
                     </span>
                     <div class="p-timeline-event-connector ng-star-inserted"></div>
                 </ng-template>
-                <ng-template pTemplate="content" let-event>
-                    <h2 style="color: #003478;">{{event.tipo}}</h2>
-                    <p-card [header]="event.data">
-                        <p>{{ event.descricao }}</p>
-                        <p-button class="btnEditar" label="Editar" [outlined]="true" severity="info"></p-button>
+                <ng-template pTemplate="content" let-prontuarios>
+                    <h2 style="color: #003478;">{{prontuarios.tipo}}</h2>
+                    <p-card [header]="'Data: ' + (prontuarios.data | date:'dd/MM/yyyy') + ', Horario: ' + prontuarios.hora">
+                        <button type="button" (click)="teste(prontuarios)">aaaaa</button>
+                        <!-- Consulta -->
+                        <p *ngIf="prontuarios.motivo"><strong>Motivo da consulta:</strong> {{ prontuarios.motivo }}.</p>
+                        <p *ngIf="prontuarios.descricao"><strong>Descrição do problema:</strong> {{ prontuarios.descricao }}</p>
+                        <p *ngIf="prontuarios.medicacao"><strong>Medicação receitada:</strong> {{ prontuarios.medicacao }}.</p>
+                        <p *ngIf="prontuarios.dosagensPrecaucoes"><strong>Dosagens e precauções:</strong> {{ prontuarios.dosagensPrecaucoes }}</p>
+                        
+                        <!-- Exame -->
+                        <p *ngIf="prontuarios.nome"><strong>Nome do exame:</strong> {{ prontuarios.nome }}</p>
+                        <p *ngIf="prontuarios.tipoExame"><strong>Tipo do exame:</strong> {{ prontuarios.tipoExame }}.</p>
+                        <p *ngIf="prontuarios.laboratorio"><strong>Nome do laboratório:</strong> {{ prontuarios.laboratorio }}.</p>
+                        <p *ngIf="prontuarios.urlDocumento"><strong>Link do documento do exame:</strong> {{ prontuarios.urlDocumento }}</p>
+                        <p *ngIf="prontuarios.resultadoExame"><strong>Resultado do exame:</strong> {{prontuarios.resultadoExame}}.</p>
+                        <p-button class="btnEditar" label="Editar" (click)="editar(prontuarios)" [outlined]="true" severity="info"></p-button>
                     </p-card>
                 </ng-template>
             </p-timeline>
+            <div id="editarProntuario">
+                <p-toast></p-toast>
+                <p-dialog  *ngIf="editarConsulta" header=" Editar consulta - Paciente: {{paciente.nomePaciente}}" [(visible)]="visible" (onHide)="fecharDialog()">
+                    <p-toast></p-toast>
+
+                        <app-cadastro-consulta></app-cadastro-consulta>
+                    <div  id="btnCancelar">
+                        <p-button label="Voltar" (click)="'editarPaciente()'" [outlined]="true" severity="info"></p-button>
+                    </div>
+                </p-dialog>
+
+                <p-dialog  *ngIf="editarExame" header="Editar exame - Paciente: {{paciente.nomePaciente}}" [(visible)]="visible" (onHide)="fecharDialog()">
+                    <p-toast></p-toast>
+
+                    <app-cadastro-exame></app-cadastro-exame>
+                <div  id="btnCancelar">
+                    <p-button label="Voltar" (click)="'editarPaciente()'" [outlined]="true" severity="info"></p-button>
+                </div>
+            </p-dialog>
+            </div>
         </div>
     </div>
 </div>
