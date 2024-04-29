@@ -42,10 +42,8 @@ export class ProntuarioPacienteComponent {
       this.paciente = this.pacientes.find((paciente: { idPaciente: number; }) => paciente.idPaciente === +id);
     };
     this.renderizarProntuarios()
-    console.log(this.prontuarios)
 
     this.eventoEditarService.getEvent().subscribe(() => {
-      console.log('deuuuu boaaaaaaa')
       this.a();
       this.editarConsulta = false;
       this.editarExame = false;
@@ -151,10 +149,6 @@ export class ProntuarioPacienteComponent {
     });
   };
 
-  teste(prontuario: any) {
-    console.log(prontuario.id)
-  }
-
   editar(prontuario: any) {
     this.visible = true;
 
@@ -170,10 +164,6 @@ export class ProntuarioPacienteComponent {
       localStorage.setItem('idEditandoPaciente', JSON.stringify(this.paciente.idPaciente));
       localStorage.setItem('idEditandoExame', JSON.stringify(idEditandoExame));
     };
-
-    let consultaEditada = prontuario
-
-    console.log(consultaEditada)
   };
 
   fecharDialog() {

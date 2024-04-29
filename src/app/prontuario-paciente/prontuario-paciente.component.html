@@ -18,7 +18,6 @@
                 <ng-template pTemplate="content" let-prontuarios>
                     <h2 style="color: #003478;">{{prontuarios.tipo}}</h2>
                     <p-card [header]="'Data: ' + (prontuarios.data | date:'dd/MM/yyyy') + ', Horario: ' + prontuarios.hora">
-                        <button type="button" (click)="teste(prontuarios)">aaaaa</button>
                         <!-- Consulta -->
                         <p *ngIf="prontuarios.motivo"><strong>Motivo da consulta:</strong> {{ prontuarios.motivo }}.</p>
                         <p *ngIf="prontuarios.descricao"><strong>Descrição do problema:</strong> {{ prontuarios.descricao }}</p>

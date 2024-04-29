@@ -61,7 +61,6 @@ export class LoginComponent {
     if (dadosUsuarioss) {
       const listaUsuarios = JSON.parse(dadosUsuarioss);
       const usuarioIndex = listaUsuarios.findIndex((usuario: any) => usuario.emailUsuario === emailTrocarSenha);
-      console.log(usuarioIndex)
 
       if (this.formTrocarSenha.valid) {
         if (usuarioIndex >= 0) {
