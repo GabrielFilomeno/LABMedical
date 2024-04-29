@@ -1,0 +1,113 @@
+@import'../shared/mixins/mixins.scss';
+
+#containerListarProntuarios {
+    color: #5C5F63;
+
+    #tabela {
+        display: flex;
+        margin: 1rem 0rem;
+        font-weight: bold;
+
+        .cards {
+            display: flex;
+            justify-content: space-between;
+            width: 98%;
+
+            .card {
+                text-align: center;
+            }
+        }
+    }
+
+    .icone {
+        display: none;
+    }
+
+    .containerCards {
+        display: flex;
+        margin: 1rem 0rem;
+        cursor: pointer;
+
+        @include border-shadow();
+        border-radius: 5px;
+
+        &:active {
+            background-color: rgba(128, 128, 128, 0.384);
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 1rem;
+
+            .card {
+                text-align: center;
+            }
+        }
+
+        .icone {
+            display: none;
+        }
+    }
+
+    #btnMostrarTodos{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 481px) {
+    #containerListarProntuarios {
+
+        #containerPesquisar {
+            display: flex;
+        }
+
+        #tabela {
+            margin: 2rem 0rem;
+            margin-bottom: 0px;
+            font-size: 1.5rem;
+
+            .cards {
+                justify-content: space-around;
+                width: 95%;
+                padding: 1.5rem;
+
+
+                .card {
+                    width: 30%;
+                }
+            }
+        }
+
+        .icone {
+
+            display: block;
+        }
+
+        .containerCards {
+            margin: 2rem 0rem;
+            margin-top: 0px;
+
+            .cards {
+                justify-content: space-around;
+                width: 95%;
+                padding: 1.5rem;
+
+                .card {
+                    width: 30%;
+                }
+            }
+
+            .icone {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                font-size: 2rem;
+                color: #5C5F63;
+
+            }
+        }
+    }
+}

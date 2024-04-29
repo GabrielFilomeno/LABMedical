@@ -49,10 +49,13 @@ export const routes: Routes = [
     },
     {
         path: 'listagem-de-prontuarios',
-        component: ListarProntuariosComponent,
         canActivate: [verificarLogadoGuard],
         data: { title: 'LISTAGEM DE PRONTUÁRIOS' },
         children: [
+            {
+                path:'',
+                component: ListarProntuariosComponent
+            },
             {
                 path: 'prontuario-paciente/:id',
                 component: ProntuarioPacienteComponent,

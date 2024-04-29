@@ -14,7 +14,7 @@ import { ToastModule } from 'primeng/toast';
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss',
   imports: [CommonModule, InputTextModule, ButtonModule, FormsModule, CardPacienteComponent, ToastModule],
-  providers: [MessageService],
+  providers: [MessageService]
 })
 export class InicioComponent {
 
