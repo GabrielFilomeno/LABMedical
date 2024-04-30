@@ -1,0 +1,35 @@
+@import'../shared/mixins/mixins.scss';
+
+*{
+    display: flex;
+    flex-direction: column;
+}
+
+#containerPagCadastro {
+
+    #containerCadastro{
+        width: 100%;
+        padding: 1rem 2rem;
+        @include border-shadow ();
+    }
+}
+
+.tamanho {
+    width: 10rem;
+}
+
+.tamnhoCalendario {
+    width: 15rem;
+}
+
+.erroLabel {
+    color: red;
+}
+
+.erroInput {
+    border: 2px solid red;
+}
+
+.avisarErro {
+    color: red;
+}

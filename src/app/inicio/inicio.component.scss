@@ -1,0 +1,141 @@
+@import'../shared/mixins/mixins.scss';
+
+#containerInicio {
+
+    #containerEstatisticas {
+        width: 100%;
+        padding: 5px;
+
+        #containerNumeros {
+            display: flex;
+            justify-content: space-between;
+
+            .numeros {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 30%;
+                padding: 5px;
+                @include border-shadow ();
+
+                .img-numero {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    img {
+                        width: 4rem;
+                        height: 4.5rem;
+                    }
+                }
+
+                .hMargin {
+                    margin-top: 5px;
+                    margin-bottom: 0px;
+                }
+
+                h1 {
+                    font-size: 4rem;
+                }
+
+                h3 {
+                    color: #5C5F63;
+                }
+            }
+        }
+    }
+
+    #containerInfo {
+        width: 100%;
+        padding: 5px;
+
+        #containerPesquisar {
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .containerCards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-bottom: 2rem;
+
+
+            app-card-paciente {
+                width: 17rem;
+                margin-top: 25px;
+
+                @include border-shadow();
+            }
+            #mostrarTodosPacientes {
+                margin-top: 25px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 594px) {
+    #containerInicio {
+
+        #containerInfo {
+
+            .containerCards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 20px;
+
+                app-card-paciente {
+                    width: 15rem;
+                    margin-right: auto;
+                    margin-left: auto;
+                }
+
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #containerInicio {
+
+        #containerEstatisticas {
+
+            #containerNumeros {
+
+                .numeros {
+
+                    .img-numero {
+                        display: flex;
+                        flex-direction: row;
+                        margin-bottom: 10px;
+
+                        img {
+                            width: 5rem;
+                            height: 5rem;
+                            margin-right: 25%;
+                        }
+                    }
+                }
+            }
+        }
+
+        #containerInfo {
+
+            .containerCards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-column-gap: 5.2%;
+
+                app-card-paciente {
+                    width: 100%;
+                    max-width: 28rem;
+                    margin-right: 0px;
+                    margin-left: 0px;
+                }
+            }
+        }
+    }
+}

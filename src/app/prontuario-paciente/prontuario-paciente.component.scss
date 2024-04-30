@@ -1,0 +1,41 @@
+#containerProntuarioPaciente {
+
+    #containerDados {
+        display: flex;
+        flex-direction: column;
+
+        span {
+            font-size: larger;
+            padding-bottom: 0.8rem;
+        }
+    }
+
+    #containerCards {
+        margin-top: 1rem;
+        border-bottom: 4px solid #1975A5;
+        padding-bottom: 5px;
+
+        #teste {
+            border: 4px solid #1975A5;
+            
+            .imagem {
+                padding: 0.6rem;
+            } 
+        }
+    }
+}
+
+@media screen and (min-width: 481px) {
+#containerProntuarioPaciente {
+
+    #containerCards {
+
+        .btnEditar {
+            position: absolute;
+            top: 5rem;
+            right: 2rem;
+        }
+    }
+}
+
+}

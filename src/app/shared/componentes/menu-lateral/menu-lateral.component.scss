@@ -1,0 +1,62 @@
+@import'../../variaveis/variaveis.scss';
+
+#containerMenuLateralMobile {
+
+    .menuLateralMobile {
+
+        .img-labmedical {
+            width: 8rem;
+        }
+
+        span {
+            margin-top: 0.5rem;
+            color: #82B4CE;
+        }
+    }
+}
+
+#containerMenuLateral {
+    display: none;
+}
+
+@media screen and (min-width: 769px) {
+
+    #containerMenuLateralMobile {
+        display: none;
+    }
+
+    #containerMenuLateral {
+        display: block;
+        width: 25vw;
+        height: 100%;
+
+        .menuLateral {
+
+            .img-labmedical {
+                width: 10rem;
+                margin-top: 4rem;
+            }
+
+            span {
+                display: flex;
+                flex-direction: column;
+                margin-top: 1rem;
+                color: #82B4CE;
+            }
+
+            #spanMinimizarMenu {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: fixed;
+                bottom: 1rem;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #containerMenuLateral {
+        width: 17rem;
+    }
+}

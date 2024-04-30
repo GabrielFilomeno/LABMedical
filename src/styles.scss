@@ -1,0 +1,290 @@
+@import'app/shared/variaveis/variaveis.scss';
+@import'app/shared/mixins/mixins.scss';
+@import "primeicons/primeicons.css";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+//Animações de transição de páginas
+@keyframes enter {
+    0% {
+        opacity: 0;
+        transform: translateX(-500px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes exit {
+    0% {
+        opacity: 1;
+        transform: translateX(+150px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(+1000px);
+    }
+}
+
+::view-transition-old(root) {
+    animation: exit 0.5s ease 0s 1 normal forwards;
+}
+
+::view-transition-new(root) {
+    animation: enter 1s ease 0s 1 normal forwards;
+}
+
+
+// Estilização dos componentes do PrimeNG
+
+//Buttons
+//Buttons pagina de login
+.btnsPrimarios .p-ripple.p-element.p-button.p-component {
+    background-color: $cor-botao;
+    border: none;
+}
+
+.btnsSecundarios .p-ripple.p-element.p-button.p-component.p-button-outlined {
+    color: $cor-botao;
+    padding: 0.5rem;
+    border-width: 2px;
+}
+
+//Buttons menu lateral
+//Botão que abre o menu lateral
+.btnAbrirMenu .p-ripple.p-element.p-button.p-component.p-button-icon-only {
+    position: fixed;
+    margin-top: 16px;
+    margin-left: 5px;
+    background-color: $cor-primaria;
+    border: none;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+//Botões dentro do menu lateral
+.btnsMenuLateral .p-ripple.p-element.p-button.p-component.p-button-outlined {
+    width: 37vw;
+    margin-bottom: 0.5rem;
+    color: #D4E5EE;
+    border-color: #82B4CE;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    font-family: sans-serif;
+    padding: 5px;
+}
+
+//Botão que minimiza o menu lateral
+.btnMinimizarMenu .p-ripple.p-element.p-button.p-component.p-button-outlined {
+    color: #D4E5EE;
+    border-color: #82B4CE;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+//Menu lateral mobile
+//Container
+.menuLateralMobile .ng-trigger-panelState.ng-tns-c4029148367-0.p-sidebar.p-sidebar-active.p-sidebar-left.ng-star-inserted {
+    width: 42vw;
+    background-color: $cor-primaria;
+    color: white;
+
+}
+
+//Organizar conteúdo
+.menuLateralMobile .p-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+//Icone de fechar
+.menuLateralMobile .p-icon.p-sidebar-close-icon {
+    color: white;
+}
+
+//Sombra menu lateral mobile
+.p-component-overlay.p-sidebar-mask.p-component-overlay-enter.ng-tns-c4029148367-0 {
+    z-index: 1 !important;
+}
+
+//Menu lateral
+//container
+.menuLateral .ng-trigger-panelState.ng-tns-c4029148367-1.p-sidebar.p-sidebar-active.p-sidebar-left.ng-star-inserted {
+    width: 25vw;
+    background-color: $cor-primaria;
+}
+
+//Organizar conteúdo
+.menuLateral .p-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// Botão padrão para fechar menu lateral
+.menuLateral .p-sidebar-header {
+    display: none;
+}
+
+//Sombra menu lateral
+.p-component-overlay.p-sidebar-mask.p-component-overlay-enter.ng-tns-c4029148367-1 {
+    display: none;
+}
+
+//Toolbar
+//Toolbar container
+.toolbar .p-toolbar.p-component {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    width: 100vw;
+    margin: 0px;
+    border: none;
+    border-bottom: 1px solid black;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 1);
+    border-radius: 0px;
+}
+
+//Container do avatar/nome
+.flex.align-items-center.gap-2 {
+    display: flex;
+    align-items: center;
+}
+
+//Input pesquisar paciente na tela de inicio
+//Container do input
+.p-input-icon-left {
+    width: 100%;
+    margin-right: 20px;
+}
+
+.p-inputtext.p-component.p-element {
+    width: 100%;
+}
+
+//timeline de consultas e exames
+// container do card
+.p-card-body {
+    background-color: #d9d9d948;
+    border: none;
+}
+
+// linha do timeline
+.p-timeline-event-connector {
+    width: 4px;
+    height: 100%;
+    background-color: #1975A5;
+}
+
+//elementro padrão do timeline que eu não quero que apareça
+div.p-timeline-event-opposite {
+    display: none;
+}
+
+//Ajudas z-index do calendario.
+.p-datepicker {
+    z-index: 10000 !important;
+}
+//Ajudas z-index sombra p-calendar
+.p-component-overlay.p-datepicker-mask.p-datepicker-mask-scrollblocker.p-component-overlay-enter {
+z-index: 1000 !important;
+}
+
+@media screen and (max-width: 369px) {
+    
+    //Toolbar container
+    .toolbar .p-toolbar.p-component {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.93rem;
+    }
+    
+    //Container do avatar/nome
+    .flex.align-items-center.gap-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    //Input pesquisar paciente na tela de inicio
+    //Container do input
+    .p-input-icon-left {
+        margin-right: 10px;
+    }
+    
+    //Botão pesquisar container
+    .btnPesquisar .p-element {
+        width: 100%;
+        font-size: small;
+    }
+
+    //Botão pesquisar
+    .p-ripple.p-element.p-button.p-component.p-button-secondary.p-button-raised.p-button-text {
+        padding: 12px 7px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    //Toolbar container
+    .toolbar .p-toolbar.p-component {
+        font-size: 0.93rem;
+    }
+
+    //Container do avatar/nome
+    .flex.align-items-center.gap-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 523px) {
+
+    //Toolbar container
+    .toolbar .p-toolbar.p-component {
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 769px) {
+
+    //Sombra menu lateral mobile
+    .p-component-overlay.p-sidebar-mask.p-component-overlay-enter.ng-tns-c4029148367-0 {
+        display: none;
+    }
+
+    //Botões dentro do menu lateral
+    .btnsMenuLateral .p-ripple.p-element.p-button.p-component.p-button-outlined {
+        width: 20vw;
+        font-size: small;
+        padding: 12px 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    //Menu lateral
+    //container
+    .menuLateral .ng-trigger-panelState.ng-tns-c4029148367-1.p-sidebar.p-sidebar-active.p-sidebar-left.ng-star-inserted {
+        width: 17rem;
+    }
+
+    //Botões dentro do menu lateral
+    .btnsMenuLateral .p-ripple.p-element.p-button.p-component.p-button-outlined {
+        width: 14rem;
+    }
+}

@@ -1,0 +1,44 @@
+<div id="containerListarProntuarios">
+    <h2>Utilize a barra de pesquisa para buscar</h2>
+    <div id="containerPesquisar">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText [(ngModel)]="procurarPaciente" />
+        </span>
+        <p-toast></p-toast>
+        <p-button label="Buscar" (click)="buscarPaciente()" class="btnPesquisar" type="button" [text]="true"
+            [raised]="true" severity="secondary"></p-button>
+    </div>
+    <div id="tabela">
+        <div class="cards">
+            <span class="card">
+                Registro
+            </span>
+            <span class="card">
+                Nome do Paciente
+            </span>
+            <span class="card">
+                Convênio
+            </span>
+        </div>
+        <span class="icone"></span>
+    </div>
+    <div class="containerCards" *ngFor="let paciente of  pacientes" (click)="prontuarioPaciente(paciente.idPaciente)">
+        <div class="cards">
+            <span class="card">
+                {{paciente.idPaciente}}
+            </span>
+            <span class="card">
+                {{paciente.nomePaciente}}
+            </span>
+            <span class="card">
+                {{paciente.convenio}}
+            </span>
+        </div>
+        <span><i class="pi pi-chevron-right icone"></i></span>
+    </div>
+    <div id="btnMostrarTodos">
+        <p-button *ngIf="pacientes.length === 1" class="btnPesquisar" label="Mostrar todos os pacientes"
+            (click)="mostrarTodosPacientes()" [outlined]="true" [raised]="true" severity="secondary"></p-button>
+    </div>
+</div>

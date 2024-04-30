@@ -1,0 +1,35 @@
+@import'../../variaveis/variaveis.scss';
+
+#containerToolbar {
+
+    #nomeDaPagina {
+        margin-left: 40px !important;
+    }
+}
+
+@media screen and (max-width: 369px) {
+    #containerToolbar {
+
+        #nomeDaPagina {
+            margin-left: 0px;
+        }
+    }
+}
+
+@media screen and (min-width: 769px) {
+    #containerToolbar {
+
+        #nomeDaPagina {
+            margin-left: 26vw !important;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #containerToolbar {
+
+        #nomeDaPagina {
+            margin-left: 19rem !important;
+        }
+    }
+}

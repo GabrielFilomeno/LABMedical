@@ -1,0 +1,10 @@
+<div id="appContainer">
+    <div [ngClass]="{'desativado': verificarLogadoService.usuarioLogado() === false}">
+        <app-toolbar></app-toolbar>
+        <app-menu-lateral></app-menu-lateral>
+    </div>
+    
+    <div id="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

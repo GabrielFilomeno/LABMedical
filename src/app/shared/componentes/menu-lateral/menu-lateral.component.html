@@ -1,0 +1,41 @@
+<div id="containerMenuLateralMobile">
+    <p-sidebar class="menuLateralMobile" [(visible)]="sidebarMobileVisible">
+        <img class="img-labmedical" src="../../../../../assets/Imagens/LABMedicalMenu.png" alt="img-labmedical">
+        <span>Geral
+            <p-button class="btnsMenuLateral" (click)="rotaInicio()" icon="pi pi-home" label="INICIO" [outlined]="true"></p-button>
+            <p-button class="btnsMenuLateral" (click)="rotaSair()" icon="pi pi-sign-out" label="SAIR" [outlined]="true"></p-button>
+        </span>
+        <span>Pacientes
+            <p-button class="btnsMenuLateral" (click)="rotaCadastroPaciente()" icon="pi pi-plus" label="CADASTRAR PACIENTE" [outlined]="true"></p-button>
+            <p-button class="btnsMenuLateral" (click)="rotaListarProntuarios()" icon="pi pi-list" label="LISTAR PRONTUARIO" [outlined]="true"></p-button>
+        </span>
+        <span>Exames
+            <p-button class="btnsMenuLateral" (click)="rotaCadastroConsulta()" icon="pi pi-plus" label="CADASTRAR CONSULTA" [outlined]="true"></p-button>
+            <p-button class="btnsMenuLateral" (click)="rotaCadastroExame()" icon="pi pi-plus" label="CADASTRAR EXAME" [outlined]="true"></p-button>
+        </span>
+    </p-sidebar>
+    <p-button class="btnAbrirMenu" (click)="sidebarMobileVisible = true" icon="pi pi-bars" [style]="{'position': 'absolute', 'z-index': 2}"></p-button>
+</div>
+
+<div id="containerMenuLateral">
+    <p-sidebar class="menuLateral" #sidebarRef [(visible)]="sidebarVisible">
+        <img class="img-labmedical" src="../../../../../assets/Imagens/LABMedicalMenu.png" alt="img-labmedical">
+        <span>Geral
+            <p-button class="btnsMenuLateral" (click)="rotaInicio()" icon="pi pi-home" label="INICIO" [outlined]="true"></p-button>
+            <p-button class="btnsMenuLateral" (click)="rotaSair()" icon="pi pi-sign-out" label="SAIR" [outlined]="true"></p-button>
+        </span>
+        <span>Pacientes
+            <p-button class="btnsMenuLateral" (click)="rotaCadastroPaciente()" icon="pi pi-plus" label="CADASTRAR PACIENTE" [outlined]="true"></p-button>
+            <p-button class="btnsMenuLateral" (click)="rotaListarProntuarios()" icon="pi pi-list" label="LISTAR PRONTUARIO" [outlined]="true"></p-button>
+        </span>
+        <span>Exames
+            <p-button class="btnsMenuLateral" (click)="rotaCadastroConsulta()" icon="pi pi-plus" label="CADASTRAR CONSULTA" [outlined]="true"></p-button>
+            <p-button class="btnsMenuLateral" (click)="rotaCadastroExame()" icon="pi pi-plus" label="CADASTRAR EXAME" [outlined]="true"></p-button>
+        </span>
+        <span id="spanMinimizarMenu">Minimizar Menu
+            <p-button class="btnMinimizarMenu" type="button" (click)="closeCallback($event)" icon="pi pi-window-minimize" rounded="true" outlined="true"
+                styleClass="h-2rem w-2rem"></p-button>
+        </span>
+    </p-sidebar>
+    <p-button class="btnAbrirMenu" (click)="sidebarVisible = true" icon="pi pi- pi-bars" [style]="{'position': 'absolute', 'z-index': 2}"></p-button>
+</div>
