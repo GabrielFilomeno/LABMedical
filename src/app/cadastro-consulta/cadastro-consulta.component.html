@@ -7,7 +7,7 @@
             <input type="text" pInputText [(ngModel)]="procurarPaciente" />
         </span>
         <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" key="cadastrar"></p-confirmDialog>   
-            <p-button class="btnPesquisar" (click)="buscarPaciente()" label="Buscar" [text]="true" [raised]="true" severity="secondary"></p-button>
+            <p-button class="btnPesquisar tamanho" (click)="buscarPaciente()" label="Buscar" [text]="true" [raised]="true" severity="secondary"></p-button>
         </div>
     </div>
     <div id="containerCadastro">
@@ -33,7 +33,7 @@
             [ngClass]="{'erroLabel': formCadastroConsulta.controls.dataConsulta.touched &&
                                       formCadastroConsulta.controls.dataConsulta.errors}">
             * Data da Consulta</label>
-            <p-calendar id="dataConsulta" formControlName="dataConsulta" dateFormat="dd/mm/yy" [showIcon]="true" [touchUI]="true"></p-calendar>
+            <p-calendar class="tamanhoCalendario" id="dataConsulta" formControlName="dataConsulta" dateFormat="dd/mm/yy" [showIcon]="true" [touchUI]="true"></p-calendar>
 
             <small [ngClass]="{'avisarErro': formCadastroConsulta.invalid}" *ngIf="
             formCadastroConsulta.controls.dataConsulta.touched &&
@@ -46,7 +46,7 @@
                                       formCadastroConsulta.controls.horaConsulta.errors}">
             * Hora da Consulta</label>
 
-            <p-calendar #horaConsulta id="horaConsulta" formControlName="horaConsulta" [timeOnly]="true" [showIcon]="true" [touchUI]="true">
+            <p-calendar #horaConsulta class="tamanhoCalendario" id="horaConsulta" formControlName="horaConsulta" [timeOnly]="true" [showIcon]="true" [touchUI]="true">
                 <ng-template pTemplate="header" ><h3 class="centralizar">Horário da Consulta</h3></ng-template>
                 <ng-template pTemplate="footer" >
                     <div class="centralizar">
@@ -96,11 +96,11 @@
             * Campo obrigatório e deve conter no minimo 16 caracteres e no maximo 256 caracteres!
             </small>
 
-            <p-button *ngIf="this.router.url === '/cadastro-consulta'" type="ngSubmit" label="Salvar"></p-button>
+            <p-button *ngIf="this.router.url === '/cadastro-consulta'" class="tamanho" type="ngSubmit" label="Salvar"></p-button>
 
             <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" key="editar"></p-confirmDialog>
-            <p-button *ngIf="this.router.url !== '/cadastro-consulta'" type="button" label="Salvar" (click)="editarConsulta()"></p-button>
-            <p-button *ngIf="this.router.url !== '/cadastro-consulta'" type="button" label="Deletar" (click)="deletarConsulta()" [outlined]="true" severity="danger"></p-button>
+            <p-button *ngIf="this.router.url !== '/cadastro-consulta'" type="button" label="Salvar" class="tamanho" (click)="editarConsulta()"></p-button>
+            <p-button *ngIf="this.router.url !== '/cadastro-consulta'" type="button" label="Deletar" class="tamanho" (click)="deletarConsulta()" [outlined]="true" severity="danger"></p-button>
         </form>
         <div class="card flex justify-content-center gap-2">
 </div>
