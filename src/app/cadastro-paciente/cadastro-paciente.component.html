@@ -5,39 +5,117 @@
         <h3>Identificação</h3>
         <form id="containerFormulario" (ngSubmit)="cadastrar()" [formGroup]="formCadastroPaciente">
             <p-toast position="top-right"></p-toast>
-            <label for="nomeCompleto">Nome Completo</label>
-            <input id="nomeCompleto" type="text" pInputText formControlName="nomePaciente" />
+            <label for="nomeCompleto" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.nomePaciente.touched &&
+            formCadastroPaciente.controls.nomePaciente.errors}">* Nome Completo</label>
+            <input id="nomeCompleto" type="text" pInputText formControlName="nomePaciente" [ngClass]="{'erroInput': formCadastroPaciente.controls.nomePaciente.touched &&
+                                     formCadastroPaciente.controls.nomePaciente.errors}" />
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.nomePaciente.touched &&
+                    formCadastroPaciente.controls.nomePaciente.errors">
+                * Campo obrigatório e deve conter no minimo 8 caracteres e no maximo 64 caracteres!
+            </small>
 
-            <label for="genero">Gênero</label>
-            <p-dropdown id="genero" formControlName="genero" [options]="generos"
-                placeholder="Selecione um gênero"></p-dropdown>
+            <label for="genero" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.genero.touched &&
+            formCadastroPaciente.controls.genero.errors}">* Gênero</label>
+            <p-dropdown id="genero" formControlName="genero" [options]="generos" placeholder="Selecione um gênero"
+                [ngClass]="{'erroInput': formCadastroPaciente.controls.genero.touched &&
+                                     formCadastroPaciente.controls.genero.errors}"></p-dropdown>
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.genero.touched &&
+                    formCadastroPaciente.controls.genero.errors">
+                * Campo obrigatório!
+            </small>
 
-            <label for="dataNascimento">Data Nascimento</label>
-            <p-calendar id="dataNascimento" formControlName="dataNascimento" dateFormat="dd/mm/yy" [autoZIndex]="false"
-                [touchUI]="true"></p-calendar>
+            <label for="dataNascimento" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.dataNascimento.touched &&
+            formCadastroPaciente.controls.dataNascimento.errors}">* Data Nascimento</label>
+            <p-calendar class="tamnhoCalendario" id="dataNascimento" formControlName="dataNascimento" dateFormat="dd/mm/yy" [autoZIndex]="false"
+                [touchUI]="true" [showIcon]="true"></p-calendar>
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.dataNascimento.touched &&
+                    formCadastroPaciente.controls.dataNascimento.errors">
+                * Campo obrigatório e a data deve estar no formato dd/mm/aaaa!
+            </small>
 
-            <label for="cpf">CPF</label>
-            <p-inputMask id="cpf" formControlName="cpf" mask="999.999.999-99"></p-inputMask>
+            <label for="cpf" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.cpf.touched &&
+            formCadastroPaciente.controls.cpf.errors}">* CPF</label>
+            <p-inputMask id="cpf" formControlName="cpf" mask="999.999.999-99" [ngClass]="{'erroInput': formCadastroPaciente.controls.cpf.touched &&
+                                     formCadastroPaciente.controls.cpf.errors}"></p-inputMask>
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.cpf.touched &&
+                    formCadastroPaciente.controls.cpf.errors">
+                * Campo obrigatório!
+            </small>
 
-            <label for="rg">RG e Orgão Expeditor</label>
-            <input id="rg" type="text" pInputText formControlName="rg" />
+            <label for="rg" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.rg.touched &&
+            formCadastroPaciente.controls.rg.errors}">* RG e Orgão Expeditor</label>
+            <input id="rg" type="text" pInputText formControlName="rg" [ngClass]="{'erroInput': formCadastroPaciente.controls.rg.touched &&
+                                     formCadastroPaciente.controls.rg.errors}" />
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.rg.touched &&
+                    formCadastroPaciente.controls.rg.errors">
+                * Campo obrigatório e deve conter no maximo 20 caracteres!
+            </small>
 
-            <label for="estadoCivil">Estado civil</label>
+            <label for="estadoCivil" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.estadoCivil.touched &&
+            formCadastroPaciente.controls.estadoCivil.errors}">* Estado civil</label>
             <p-dropdown id="estadoCivil" formControlName="estadoCivil" [options]="estadosCivis"
-                placeholder="Selecione um estado civil"></p-dropdown>
+                placeholder="Selecione um estado civil" [ngClass]="{'erroInput': formCadastroPaciente.controls.estadoCivil.touched &&
+                                     formCadastroPaciente.controls.estadoCivil.errors}"></p-dropdown>
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.estadoCivil.touched &&
+                    formCadastroPaciente.controls.estadoCivil.errors">
+                * Campo obrigatório!
+            </small>
 
-            <label for="telefone">Telefone</label>
-            <p-inputMask id="telefone" formControlName="telefone" mask="(99) 9 9999-9999"></p-inputMask>
+            <label for="telefone" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.telefone.touched &&
+            formCadastroPaciente.controls.telefone.errors}">* Telefone</label>
+            <p-inputMask id="telefone" formControlName="telefone" mask="(99) 9 9999-9999" [ngClass]="{'erroInput': formCadastroPaciente.controls.telefone.touched &&
+                                     formCadastroPaciente.controls.telefone.errors}"></p-inputMask>
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.telefone.touched &&
+                    formCadastroPaciente.controls.telefone.errors">
+                * Campo obrigatório!
+            </small>
 
-            <label for="email">E-Mail</label>
-            <input id="email" type="text" pInputText formControlName="email" />
+            <label for="email" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.email.touched &&
+            formCadastroPaciente.controls.email.errors}">* E-Mail</label>
+            <input id="email" type="text" pInputText formControlName="email" [ngClass]="{'erroInput': formCadastroPaciente.controls.email.touched &&
+                                     formCadastroPaciente.controls.email.errors}" />
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.email.touched &&
+                    formCadastroPaciente.controls.email.errors">
+                * Campo obrigatório e deve ser um email!
+            </small>
 
-            <label for="naturalidade">Naturalidade</label>
-            <input id="naturalidade" type="text" pInputText formControlName="naturalidade" />
+            <label for="naturalidade" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.naturalidade.touched &&
+            formCadastroPaciente.controls.naturalidade.errors}">* Naturalidade</label>
+            <input id="naturalidade" type="text" pInputText formControlName="naturalidade" [ngClass]="{'erroInput': formCadastroPaciente.controls.naturalidade.touched &&
+                                     formCadastroPaciente.controls.naturalidade.errors}" />
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.naturalidade.touched &&
+                    formCadastroPaciente.controls.naturalidade.errors">
+                * Campo obrigatório e deve conter no minimo 8 caracteres e no maximo 64 caracteres!
+            </small>
 
-            <label for="contatoEmergencia">Contato de Emergência</label>
-            <p-inputMask id="contatoEmergencia" formControlName="contatoEmergencia"
-                mask="(99) 9 9999-9999"></p-inputMask>
+            <label for="contatoEmergencia" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.contatoEmergencia.touched &&
+            formCadastroPaciente.controls.contatoEmergencia.errors}">* Contato de Emergência</label>
+            <p-inputMask id="contatoEmergencia" formControlName="contatoEmergencia" mask="(99) 9 9999-9999" [ngClass]="{'erroInput': formCadastroPaciente.controls.contatoEmergencia.touched &&
+                                     formCadastroPaciente.controls.contatoEmergencia.errors}"></p-inputMask>
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.contatoEmergencia.touched &&
+                    formCadastroPaciente.controls.contatoEmergencia.errors">
+                * Campo obrigatório!
+            </small>
 
             <label for="alergias">Alergias</label>
             <input id="alergias" type="text" pInputText formControlName="alergias" />
@@ -55,15 +133,23 @@
                 [useGrouping]="false"></p-inputNumber>
 
             <label for="validade">Validade</label>
-            <p-calendar id="validade" formControlName="validade" dateFormat="dd/mm/yy" [autoZIndex]="false"
-                [touchUI]="true"></p-calendar>
+            <p-calendar class="tamnhoCalendario" id="validade" formControlName="validade" dateFormat="dd/mm/yy" [autoZIndex]="false"
+                [touchUI]="true" [showIcon]="true"></p-calendar>
 
             <h3>Dados do Endereço</h3>
 
-            <label for="cep">CEP</label>
-            <p-inputMask id="cep" formControlName="cep" mask="99999-999"></p-inputMask>
+            <label for="cep" [ngClass]="{'erroLabel': 
+            formCadastroPaciente.controls.cep.touched &&
+            formCadastroPaciente.controls.cep.errors}">* CEP</label>
+            <p-inputMask id="cep" formControlName="cep" mask="99999-999" [ngClass]="{'erroInput': formCadastroPaciente.controls.cep.touched &&
+                                     formCadastroPaciente.controls.cep.errors}"></p-inputMask>
+            <small [ngClass]="{'avisarErro': formCadastroPaciente.invalid}" *ngIf="
+                    formCadastroPaciente.controls.cep.touched &&
+                    formCadastroPaciente.controls.cep.errors">
+                * Campo obrigatório!
+            </small>
             <p-button type="button" label="Procurar CEP" (click)="procurarCep()" [outlined]="true"
-                severity="info"></p-button>
+                severity="info" class="tamanho"></p-button>
 
             <label for="cidade">Cidade</label>
             <input id="cidade" type="text" pInputText formControlName="cidade" />
@@ -88,11 +174,10 @@
 
             <div *ngIf="router.url === '/inicio'">
                 <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
-                <p-button (click)="editar()" type="button" label="Salvar" [outlined]="true"
-                severity="info"></p-button>
+                <p-button (click)="editar()" type="button" label="Salvar" [outlined]="true" severity="info" class="tamanho"></p-button>
             </div>
 
-            <p-button *ngIf="router.url === '/cadastro-paciente'" type="ngSubmit" label="Salvar"></p-button>
+            <p-button *ngIf="router.url === '/cadastro-paciente'" type="ngSubmit" label="Salvar" class="tamanho"></p-button>
         </form>
     </div>
 </div>

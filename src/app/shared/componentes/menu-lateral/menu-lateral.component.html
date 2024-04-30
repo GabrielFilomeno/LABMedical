@@ -14,7 +14,7 @@
             <p-button class="btnsMenuLateral" (click)="rotaCadastroExame()" icon="pi pi-plus" label="CADASTRAR EXAME" [outlined]="true"></p-button>
         </span>
     </p-sidebar>
-    <p-button class="btnAbrirMenu" (click)="sidebarMobileVisible = true" icon="pi pi-bars"></p-button>
+    <p-button class="btnAbrirMenu" (click)="sidebarMobileVisible = true" icon="pi pi-bars" [style]="{'position': 'absolute', 'z-index': 2}"></p-button>
 </div>
 
 <div id="containerMenuLateral">
@@ -37,5 +37,5 @@
                 styleClass="h-2rem w-2rem"></p-button>
         </span>
     </p-sidebar>
-    <p-button class="btnAbrirMenu" (click)="sidebarVisible = true" icon="pi pi- pi-bars"></p-button>
+    <p-button class="btnAbrirMenu" (click)="sidebarVisible = true" icon="pi pi- pi-bars" [style]="{'position': 'absolute', 'z-index': 2}"></p-button>
 </div>

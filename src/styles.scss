@@ -146,6 +146,7 @@ body {
 //Toolbar container
 .toolbar .p-toolbar.p-component {
     display: flex;
+    position: fixed;
     justify-content: center;
     width: 100vw;
     margin: 0px;
@@ -194,6 +195,10 @@ div.p-timeline-event-opposite {
 //Ajudas z-index do calendario.
 .p-datepicker {
     z-index: 10000 !important;
+}
+//Ajudas z-index sombra p-calendar
+.p-component-overlay.p-datepicker-mask.p-datepicker-mask-scrollblocker.p-component-overlay-enter {
+z-index: 1000 !important;
 }
 
 @media screen and (max-width: 369px) {

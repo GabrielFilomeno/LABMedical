@@ -6,7 +6,7 @@
             <input type="text" pInputText [(ngModel)]="procurarPaciente" />
         </span>
         <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" key="cadastrar"></p-confirmDialog>
-        <p-button class="btnPesquisar" label="Buscar" (click)="buscarPaciente()" [text]="true" [raised]="true"
+        <p-button class="btnPesquisar tamanho" label="Buscar" (click)="buscarPaciente()" [text]="true" [raised]="true"
             severity="secondary"></p-button>
     </div>
     <div id="containerCadastro">
@@ -35,7 +35,7 @@
                     formCadastroExame.controls.dataExame.errors}">
             * Data do Exame</label>
 
-            <p-calendar id="dataExame" formControlName="dataExame" dateFormat="dd/mm/yy" [showIcon]="true" [touchUI]="true"></p-calendar>
+            <p-calendar id="dataExame" class="tamnhoCalendario" formControlName="dataExame" dateFormat="dd/mm/yy" [showIcon]="true" [touchUI]="true"></p-calendar>
 
             <small [ngClass]="{'avisarErro': formCadastroExame.invalid}" *ngIf="
                     formCadastroExame.controls.dataExame.touched &&
@@ -48,7 +48,7 @@
             formCadastroExame.controls.horaExame.errors}">
             * Hora do Exame</label>
             
-            <p-calendar #horaExame id="horaExame" formControlName="horaExame" [timeOnly]="true" [showIcon]="true" [touchUI]="true">
+            <p-calendar #horaExame id="horaExame" class="tamnhoCalendario" formControlName="horaExame" [timeOnly]="true" [showIcon]="true" [touchUI]="true">
                 <ng-template pTemplate="header" ><h3 class="centralizar">* Horário do Exame</h3></ng-template>
                 <ng-template pTemplate="footer" >
                     <div class="centralizar">
@@ -115,11 +115,11 @@
                 * Campo obrigatório e deve conter no minimo 16 caracteres e no maximo 1024 caracteres!
             </small>
 
-            <p-button *ngIf="this.router.url === '/cadastro-exame'" type="ngSubmit" label="Salvar"></p-button>
+            <p-button *ngIf="this.router.url === '/cadastro-exame'" type="ngSubmit" label="Salvar" class="tamanho"></p-button>
 
             <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" key="editar"></p-confirmDialog>
-            <p-button *ngIf="this.router.url !== '/cadastro-exame'" type="button" label="Salvar" (click)="editarExame()"></p-button>
-            <p-button *ngIf="this.router.url !== '/cadastro-exame'" type="button" label="Deletar" (click)="deletarExame()" [outlined]="true" severity="danger"></p-button>
+            <p-button *ngIf="this.router.url !== '/cadastro-exame'" type="button" label="Salvar" (click)="editarExame()" class="tamanho"></p-button>
+            <p-button *ngIf="this.router.url !== '/cadastro-exame'" type="button" label="Deletar" (click)="deletarExame()" class="tamanho" [outlined]="true" severity="danger"></p-button>
         </form>
     </div>
     

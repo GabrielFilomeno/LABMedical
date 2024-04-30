@@ -32,7 +32,7 @@ export class CadastroPacienteComponent {
     rg: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     estadoCivil: new FormControl('', Validators.required),
     telefone: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.email),
+    email: new FormControl('', [Validators.required, Validators.email]),
     naturalidade: new FormControl('', [Validators.required, Validators.maxLength(64), Validators.minLength(8)]),
     contatoEmergencia: new FormControl('', Validators.required),
     alergias: new FormControl(''),

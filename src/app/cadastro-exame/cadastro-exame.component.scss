@@ -1,29 +1,39 @@
 @import'../shared/mixins/mixins.scss';
 
-#containerPagCadastro {
+* {
+    display: flex;
+    flex-direction: column;
+}
 
-    #containerCadastro {
-        width: 100%;
-        margin-top: 20px;
-        padding: 1rem 2rem;
-        @include border-shadow ();
+#containerCadastro {
+    width: 100%;
+    margin-top: 20px;
+    padding: 1rem 2rem;
+    @include border-shadow ();
+}
 
-        .erroLabel {
-            color: red;
-        }
+.tamanho {
+    width: 10rem;
+}
 
-        .erroInput {
-            border: 2px solid red;
-        }
+.tamnhoCalendario {
+    width: 15rem;
+}
 
-        .avisarErro {
-            color: red;
-        }
+.erroLabel {
+    color: red;
+}
 
-        .centralizar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
+.erroInput {
+    border: 2px solid red;
+}
+
+.avisarErro {
+    color: red;
+}
+
+.centralizar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
