@@ -10,7 +10,7 @@
             [raised]="true" severity="secondary"></p-button>
     </div>
     <div id="tabela">
-        <div class="cards">
+        <div class="cards" *ngIf="pacientes">
             <span class="card">
                 Registro
             </span>
@@ -23,6 +23,7 @@
         </div>
         <span class="icone"></span>
     </div>
+    <h2 *ngIf="pacientes === undefined">Nenhum paciente cadastrado.</h2>
     <div class="containerCards" *ngFor="let paciente of  pacientes" (click)="prontuarioPaciente(paciente.idPaciente)">
         <div class="cards">
             <span class="card">
@@ -38,7 +39,7 @@
         <span><i class="pi pi-chevron-right icone"></i></span>
     </div>
     <div id="btnMostrarTodos">
-        <p-button *ngIf="pacientes.length === 1" class="btnPesquisar" label="Mostrar todos os pacientes"
+        <p-button *ngIf="pacientes && pacientes.length === 1" class="btnPesquisar" label="Mostrar todos os pacientes"
             (click)="mostrarTodosPacientes()" [outlined]="true" [raised]="true" severity="secondary"></p-button>
     </div>
 </div>

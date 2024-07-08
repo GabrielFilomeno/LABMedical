@@ -19,8 +19,8 @@ import { ToastModule } from 'primeng/toast';
 export class InicioComponent {
 
   procurarPaciente!: string;
-  pacientes: any;
-  listaPacientes: any;
+  pacientes: any = [];
+  listaPacientes: any = [];
   totalConsultas: any;
   totalExames: any;
   constructor(
@@ -36,13 +36,18 @@ export class InicioComponent {
       this.listaPacientes = JSON.parse(this.listaPacientes)
     };
 
-    this.totalConsultas = this.pacientes.reduce((soma: number, paciente: { consultas: string | any[]; }) => {
-      return soma + (paciente.consultas ? paciente.consultas.length : 0);
-    }, 0);
-
-    this.totalExames = this.pacientes.reduce((soma: number, paciente: { exames: string | any[]; }) => {
-      return soma + (paciente.exames ? paciente.exames.length : 0);
-    }, 0);
+    if (this.pacientes) {
+      this.totalConsultas = this.pacientes.reduce((soma: number, paciente: { consultas: string | any[]; }) => {
+        return soma + (paciente.consultas && paciente.consultas.length ? paciente.consultas.length : 0);
+      }, 0);
+      
+      this.totalExames = this.pacientes.reduce((soma: number, paciente: { exames: string | any[]; }) => {
+        return soma + (paciente.exames && paciente.exames.length ? paciente.exames.length : 0);
+      }, 0);
+      
+    }
+    
+    
 
     this.placeHolder()
 

@@ -6,7 +6,7 @@
             <div class="numeros">
                 <span class="img-numero">
                     <img src="../../assets/Imagens/numerosPacientes.png" alt="numeros-pacientes">
-                    <h1 class="hMargin">{{pacientes.length}}</h1>
+                    <h1 class="hMargin">{{pacientes ? pacientes.length : 0}}</h1>
                 </span>
                 <h3 class="hMargin">Pacientes</h3>
             </div>
@@ -39,7 +39,7 @@
         <p-toast></p-toast>
         <div class="containerCards">
             <app-card-paciente *ngFor="let paciente of  listaPacientes" [pacientes]="paciente" (atualizarLista)="atualizarListaPacientes()"></app-card-paciente>
-            <p-button *ngIf="listaPacientes.length === 1" id="mostrarTodosPacientes" class="btnPesquisar"
+            <p-button *ngIf="listaPacientes && listaPacientes.length === 1" id="mostrarTodosPacientes" class="btnPesquisar"
                 label="Mostrar todos os pacientes" (click)="mostrarTodosPacientes()" [outlined]="true" [raised]="true"
                 severity="secondary"></p-button>
         </div>
