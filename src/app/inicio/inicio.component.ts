@@ -46,10 +46,11 @@ export class InicioComponent {
       }, 0);
       
     }
-    
-    
 
-    this.placeHolder()
+    if (!this.listaPacientes) {
+      window.location.reload();
+      this.placeHolder()
+    }
 
     this.eventoEditarService.getEvent().subscribe(() => {
       this.atualizarListaPacientes()
@@ -77,8 +78,6 @@ export class InicioComponent {
 
     this.procurarPaciente = '';
   }
-
-
 
   mostrarTodosPacientes() {
     this.listaPacientes = this.pacientes;

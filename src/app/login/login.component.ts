@@ -176,8 +176,7 @@ export class LoginComponent {
     }
 
 
-    window.location.reload();
     this.verificarLogadoService.login();
-    this.router.navigate(["inicio"]);
+    this.router.navigateByUrl('/inicio');
   };
 }
